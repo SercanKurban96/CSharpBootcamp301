@@ -43,5 +43,15 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSharpBootcamp301.DataAccessLayer\CSharpBootcamp301.DataAccessLayer.csproj">
+      <Project>{8b180145-fb45-4eaf-bad1-3448bb1daa1f}</Project>
+      <Name>CSharpBootcamp301.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CSharpBootcamp301.EntityLayer\CSharpBootcamp301.EntityLayer.csproj">
+      <Project>{3f3731fa-5a6a-4806-baf4-a13dcc3d0c13}</Project>
+      <Name>CSharpBootcamp301.EntityLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
