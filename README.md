@@ -115,3 +115,13 @@ Sorumlulukların hepsini tek bir arayüze toplamak yerine daha özelleştirilmi�
 ### D - Dependency Inversion Principle
 Sınıflar arası bağımlılıklar olabildiğince az olmalıdır özellikle üst seviye sınıflar alt seviye sınıflara bağımlı olmamalıdır.
 
+![image](https://github.com/user-attachments/assets/346ce09f-4d2c-4d4e-89e0-ff50ee7a7bd8)
+
+Dördüncü "Class"ımızın ismini Order olarak belirledik ve propertylerimizi yazdık.
+
+Bütün "Class"larımızı tanımladıktan sonra diğer katmanlarımızı da oluşturalım. Katmanlar sırayla CSharpBootcamp301.DataAccessLayer, CSharpBootcamp301.BusinessLayer ve CSharpBootcamp301.PresentationLayer olarak belirliyoruz, ancak CSharpBootcamp301.PresentationLayer katmanında Class Library (.NET Framework) kısmını seçmiyoruz, onun yerine Windows Forms App (.NET Framework) olarak seçiyoruz. Başlangıç projesini belirlemek için PresentationLayer katmanına sağ tıklayıp "Set as Startup Project" diyoruz.
+
+![image](https://github.com/user-attachments/assets/eb2734f3-a8fe-420b-bf4d-333c2156317b)
+
+Projemizin son hali bu şekilde olacaktır.
+
