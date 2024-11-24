@@ -9,15 +9,13 @@
 
 Katmanlar sorumlulukların ayrılması ve bağımlılıkların yönetilmesi için kullanılan bir yöntemdir. Her katmanın belirli bir sorumluluğu vardır. Daha yüksek bir katman, hizmetleri daha düşük bir katmanda kullanabilir ancak daha düşük bir katman, hizmetleri daha yüksek bir katmanda kullanamaz. N katmanlı mimariler şunlardır:
 
-## EntityLayer
-Bu katmanda projeye ait entityler tanımlanacak.
-## DataAccessLayer
-Bu katmanda projeyle ilgili veri tabanı işlemleri yazılacak.
-## BusinessLayer
-Bu katmanda logic sorgulamaları yapılacak.
-## PresentationLayer
-Bu katmanda ise veritabanında çektiğimiz verileri kullanıcıya sunma katmanımızdır.
+** EntityLayer: Bu katmanda projeye ait entityler tanımlanacak.
 
+** DataAccessLayer: Bu katmanda projeyle ilgili veri tabanı işlemleri yazılacak.
+
+** BusinessLayer: Bu katmanda logic sorgulamaları yapılacak.
+
+** PresentationLayer: Bu katmanda ise veritabanında çektiğimiz verileri kullanıcıya sunma katmanımızdır.
 
 ![Ekran görüntüsü 2024-11-24 134015](https://github.com/user-attachments/assets/224b26f4-1a33-4c51-816f-3f3a56fc3c41)
 
@@ -223,9 +221,9 @@ Paketi yükledikten sonra karşımıza bu şekilde çıkacaktır.
 
 Bağlantı adresimizi vermek için configuration bittiği kısmın hemen üstüne connectionStrings etiketi oluşturuyoruz. Daha sonra add kısmından name diyoruz.
 
-## "name" kısmı bağlantı adresimize ait tablolar hangi sınıfta tutuluyorsa "KampContext" buraya ismini veriyoruz.
+"name" kısmı bağlantı adresimize ait tablolar hangi sınıfta tutuluyorsa "KampContext" buraya ismini veriyoruz.
 
-## connectionString bağlantı adresin olduğu kısmı temsil etmektedir. Yazacağımız komut sırayla şu şekilde olacaktır. Data Source = "SQL'e bağlanırken gelen bir bağlantı sunucu adresimizi temsil eder." ; initial Catalog = "Oluşturacağımız veri tabanın ismidir." ; integrated security = true kısmı ise bağlantının güvenli olduğunu bildirmek için kullanılır. Daha sonra providerName = "System.Data.SqlClient" olacaktır.
+connectionString bağlantı adresin olduğu kısmı temsil etmektedir. Yazacağımız komut sırayla şu şekilde olacaktır. Data Source = "SQL'e bağlanırken gelen bir bağlantı sunucu adresimizi temsil eder." ; initial Catalog = "Oluşturacağımız veri tabanın ismidir." ; integrated security = true kısmı ise bağlantının güvenli olduğunu bildirmek için kullanılır. Daha sonra providerName = "System.Data.SqlClient" olacaktır.
 
 ### DataAccessLayer katmanına gidip kalan klasörlerimizi oluşturuyoruz. Bu klasörler; Repositories, Abstract ve EntityFramework olacaktır.
 
