@@ -1,5 +1,5 @@
 #  <img height="50" src="https://user-images.githubusercontent.com/25181517/121405384-444d7300-c95d-11eb-959f-913020d3bf90.png"> EĞİTİM KAMPI
-👋 Merhabalar, oluşturmuş olduğum bu repo, Murat Yücedağ hocamızın YouTube üzerinden hazırlamış olduğu C# Eğitim Kampı süresince tamamlamış olduğum projeleri içermektedir. Bu eğitimde C# Katmanlı Mimari konusu anlatılmaktadır.
+👋 Merhabalar, oluşturmuş olduğum bu repo, Murat Yücedağ hocamızın YouTube üzerinden hazırlamış olduğu C# Eğitim Kampı süresince tamamlamış olduğum projeleri içermektedir. Bu eğitimde 301 modül olan N Katmanlı Mimari - Entity Framework konuları anlatılmaktadır.
 
 ## 🖥️ C# Eğitim Kampı Ders 11 - OOP Modülü: C# ile N Katmanlı Mimari Entity Layer
 ### 📆 Tarih: 29 Ekim 2024
@@ -318,3 +318,119 @@ Abstract klasöründen bir tane daha Interface oluşturalım. Bu kez ICategoryDa
 Public olarak belirledikten sonra ICategoryDal sonuna gelip : işareti koyuyoruz ve IGenericDal'dan miras alıyoruz. Bu mirası Category sınıfından almış oluyoruz. Artık Category sınıfı için ekleme, silme, güncelleme işlemlerini hazır hale getirmiş olduk.
 
 Diğer bütün interfacelerini de aynı şekilde yapıyoruz.
+
+## 🖥️ C# Eğitim Kampı Ders 14 - Orm Yapısı: Entity Framework DbFirst ve Model Oluşturma
+### 📆 Tarih: 12 Kasım 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+Bu eğitimde Solution üzerinden yeni bir proje oluşturuyoruz, oluşturacağımız proje Windows Forms App (.NET Framework) olanı seçiyoruz. İsmini CSharpBootcamp301.EFProject olarak belirliyoruz.
+
+Bu projemizde ilk olarak CSharpBootcamp301.EFProject katmanına sağ tıklayıp Set as Startup Project diyoruz. Daha sonra tekrardan aynı katmana sağ tıklayıp Scope to This diyoruz. Ardından SQL veri tabanımızı açıyoruz ve sadece bu projeye özgü tablolar oluşturuyoruz.
+
+SQL'e gelip yeni bir tane veri tabanı oluşturuyoruz. Burada ismini BootcampEfTravelDb olarak belirledik.
+
+![image](https://github.com/user-attachments/assets/55a77ce7-bac2-4e79-9353-a293f66c901e)
+
+Sıra sıra tablolarımızı oluşturuyoruz. İlk tablomuzun ismini TblCustomer olarak belirledik.
+
+![image](https://github.com/user-attachments/assets/a1ce3d12-4b23-4859-ac5d-e3248a02c845)
+
+İkinci tablomuzun ismini TblLocation olarak belirledik.
+
+![image](https://github.com/user-attachments/assets/a531d17c-1edc-4cba-894f-5999d705c53d)
+
+Üçüncü tablomuzun ismini TblGuide olarak belirledik.
+
+![image](https://github.com/user-attachments/assets/e5baf687-bea6-4c4f-90ff-90022652754a)
+
+Location tablosuna gelip GuideID ekliyoruz.
+
+![image](https://github.com/user-attachments/assets/6252b253-137e-4dd3-a4b5-f7ed4612a8c8)
+
+İlişkili tabloları oluşturmak için ilgili veri tabanında yer alan Database Diagrams klasörüne sağ tıklayıp New Database Diagram diyoruz.
+
+![image](https://github.com/user-attachments/assets/b26a1d99-7a5a-4880-8692-49dc21888f81)
+
+Guide ile Location tablolarını seçiyoruz, isterseniz hepsini de seçebilirsiniz ancak burada ilişkili tablolar hangileriyse onları aldık. Add dedikten sonra Close diyoruz.
+
+![image](https://github.com/user-attachments/assets/32fbbf01-f148-4b50-9a0f-809c2fcf8eee)
+
+Burada TblGuide tablosunda yer alan GuideID kısmında yer alan anahtara basılı tutup TblLocation tablosunda yer alan GuideID olan özelliğe sürüklüyoruz.
+
+![image](https://github.com/user-attachments/assets/5f5f2eb2-f38c-4997-8323-3a0dd3bd32cd)
+
+Karşımıza bu şekilde çıkacaktır. OK diyoruz.
+
+![image](https://github.com/user-attachments/assets/ff521466-51c4-4c0d-ab54-66b2ffab177d)
+
+İlişkili tablomuz hazır. Bu tabloyu kaydediyoruz ve ismini değiştirmeye gerek duymuyoruz.
+
+## Entity Framework nedir?
+
+Entity Framework, ADO.NET için geliştirilmiş open-source bir Object-Relational Mapping (ORM) Frameworküdür. Database procceslerini, .NET nesneleri aracılığıyla daha kolay ve daha etkili bir şekilde gerçekleştirmenize yardımcı olur. Bu sayede, developerlar database querylerini ve işlemlerini SQL yerine C# ile yazabilirler.
+
+Entity Framework ile 4 farklı yöntem kullanarak proje geliştirebilirsiniz. Bu yöntemler;
+
+* Model First (Yeni Veritabanı Oluşturma Visual Studio İle)
+  
+* Database First (Var Olan Veritabanını Kullanma)
+  
+* Code First (Yeni Veritabanı Kod Yazarak)
+  
+* Code First(Var Olan Veritabanını Kullanma)
+
+### Model First 
+
+Bu yöntem Visual Studio üzerinde boş bir model dosyası (.edmx) eklenerek veritabanını bu model üzerinde tasarlanabilmesine olanak sağlıyor. Derleme adımında verilen script dosyası veritabanını oluşturur.
+
+### Database First
+
+Bu yöndem önceden oluşturulmuş olan veritabanını projeye model olarak bağlayarak gerekli classlarımız Entity Framework tarafından oluşturulmaktadır.
+
+### Code First (Kod Yazarak)
+
+Bu yöntem classlarımızı visual studio ortamında oluşturmaya başlayarak gerçekleştirdiğimiz bir yöntemdir. Veritabanımız bu classlardan türetilmektedir. Burada Mapping işlemleri yazılımcı tarafından classlar oluşturulurken Attribute’lar sayesinde yapılabilmektedir. Bu arada Mapping işlemi kısaca tablolarımızdaki kısıtlarımızı belirlediğimiz olaydır. Attribute’ların yanında farklı yöntemlerlede bu işlemleri gerçekleştirebilmekteyiz. Örnek vermek gerekirse Fluent Api veya Fluent Validation gibi araçlar Mapping işlemleri için popüler olarak kullanılmaktadır.
+
+### Code First (Var Olan Veritabanını Kullanma)
+
+Bu yöntemde de classlar ve mapping kodları yazılımcı tarafından oluşturulmaktadır. Veritabanımız classlarımızın ve modellemenin durumuna göre güncellenmektedir.
+
+Projemize dönelim. Önce bir tane klasör ekleyelim. Daha sonra Solution kısmına sağ tıklayıp Add kısmından New Item seçiyoruz.
+
+![image](https://github.com/user-attachments/assets/3f242c92-4dd1-4add-a4d5-cb6ad221b049)
+
+Sol tarafta bulunan Data sekmesine tıklayıp en üstte çıkan ADO.NET Entity Data Model'i seçiyoruz.
+
+![image](https://github.com/user-attachments/assets/9953fc15-8366-44d4-84ee-f7cc8efc8f9e)
+
+Seçtikten sonra karşımıza bu şekilde çıkacaktır. Burada ilk sıradakini seçiyoruz.
+
+![image](https://github.com/user-attachments/assets/e7339ca6-52e4-43ed-a3cc-1e73528bacc6)
+
+Burada daha önceden bir bağlantı oluşturmadığım için burası bana boş gözükecektir. Sağ tarafta bulunan New Connection'a tıklıyoruz.
+
+![image](https://github.com/user-attachments/assets/0d3047de-f135-45ae-a7ea-5a1c4c9317bc)
+
+Server name kısmı burada SQL'e ait olan sunucuyu girmemiz gerekecektir.
+
+![image](https://github.com/user-attachments/assets/decb909d-0252-4451-8280-51509fc00d43)
+
+Burada server adını girdikten sonra gelişmiş versiyonlarda Trust Server Certificate kısmını true olarak işaretliyoruz. Daha sonra aşağıda yer alan Select or enter a database name kısmına gelip hazırlamış olduğumuz veri tabanını seçiyoruz ve OK diyoruz.
+
+![image](https://github.com/user-attachments/assets/54cb4617-cc99-4fad-80e9-b50ee47f5b0e)
+
+Modelimiz oluştuktan sonra Next diyoruz.
+
+![image](https://github.com/user-attachments/assets/febc994e-7149-449b-b73c-0aea0a8b82a9)
+
+Burada 6.x sürümü seçili olarak gelecektir, Next diyoruz.
+
+![image](https://github.com/user-attachments/assets/9b36e291-567f-4d78-a873-24b4cf37dd66)
+
+Burada Tables kısmından bütün alanları seçiyoruz ve Finish diyoruz.
+
+NOT: sysdiagrams, SQL Server'da veritabanı diyagramlarını yönetmek için kullanılan bir sistem tablosudur ve veritabanı şemasının görsel temsillerini saklar.
+
+![image](https://github.com/user-attachments/assets/8a6bf15a-4540-4988-aa72-d3346bba764b)
+
+Modelimiz artık hazır.
