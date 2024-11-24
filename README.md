@@ -125,3 +125,62 @@ Bütün "Class"larımızı tanımladıktan sonra diğer katmanlarımızı da olu
 
 Projemizin son hali bu şekilde olacaktır.
 
+## 🖥️ C# Eğitim Kampı Ders 12 - OOP Modülü: Data Access Katmanı ve Context Sınıfı
+### 📆 Tarih: 6 Kasım 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+Bu kısımda propertyler arasındaki ilişkileri kuruyor olacağız.
+
+İlk olarak kuracağımız ilişki Category ile Product olacaktır. Bizim her bir ürünümüzün mutlaka bir kategorisi olmalıdır. Bunun için önce Product sınıfına gidiyoruz.
+
+![image](https://github.com/user-attachments/assets/8329212b-f773-42d0-b109-27740c9e3ba6)
+
+Burada Product tablosu üzerinden Category tablosuna gidebilmek için ilişkinin bire çok kısmının bir bölümünü yapabilmek adına bir Category türünde property eklememiz gerekmektedir. Daha sonra public virtual anahtar kelimemizi ekleyerek Category sınıfından Category ismini tanımlıyoruz. Category tablosunu da bundan haberdar etmemiz gerekir. Bunun için Category sınıfına gidiyoruz.
+
+![image](https://github.com/user-attachments/assets/3f0b5cf8-faf0-4399-8ff5-13db5d912ec8)
+
+Burada List metodunu ekleyerek ismini Products olarak belirledik. Her bir ürünün sadece bir tane kategorisi olacağı için çoğul olarak belirledik.
+
+Order sınıfına geliyoruz. Satış yaptığımız sırada satış yaptığımız ürüne ait bilgi olmalıdır. Bunun için Order ile Product arasındaki ilişkiyi kuruyoruz.
+
+![image](https://github.com/user-attachments/assets/ee22c733-61ae-42a3-aeba-bad59d0c83b7)
+
+Order sınıfından Product ile ilişkiyi kurduk.
+
+![image](https://github.com/user-attachments/assets/820b9dc5-349c-41d5-acb9-2785381c670f)
+
+Product sınıfına giderek List türünden Orders olarak belirledik.
+
+Order sınıfına dönerek birkaç ekleme yapıyoruz.
+
+![image](https://github.com/user-attachments/assets/5651fd83-eb30-46fa-ab28-84f98c47f226)
+
+Bu kez Order - Customer sınıfları arasındaki ilişkiyi kuruyoruz.
+
+![image](https://github.com/user-attachments/assets/95e80377-694c-4666-aa4c-5f5c548e27fb)
+
+Customer sınıfına gidip Order ile arasındaki ilişkiyi kurmuş olduk.
+
+![image](https://github.com/user-attachments/assets/df6a77d6-73f2-4a59-b5b4-3f491d9e0aa3)
+
+Tüm ilişkileri kurduktan sonra EntityLayer katmanına sağ tıklayıp Manage NuGet Packages diyoruz.
+
+![image](https://github.com/user-attachments/assets/10bdb4e3-d6a8-4aca-bcae-9148d66706e9)
+
+Burada sol üstte yer alan Browse kısmına tıkladıktan sonra arama çubuğuna entityframework yazıyoruz ve çıkan "EntityFramework" olana tıklayıp sağda bulunan Install kısmına tıklıyoruz. EntityLayer katmanında yer alan paketler yüklenecektir.
+
+Bu katmanlar birbirine refere ederek gidecekler. EntityLayer katmanı DataAccess katmanına referans olarak verilecek. DataAccess katmanı bu kez Business katmanına referans olarak verilecek ve Business katmanı doğal olarak Presentation katmanına referans olarak verilecektir. Katmanlar PresentationLayer > BusinessLayer > DataAccessLayer > EntityLayer şeklinde gidecektir.
+
+DataAccessLayer katmanına gidiyoruz.
+
+![image](https://github.com/user-attachments/assets/ac7f7f8a-a362-4bde-99b5-5098e61df73e)
+
+Projeye referans verebilmek adına ilk olarak DataAccessLayer katmanına sağ tıklayıp Add kısmından Reference kısmını seçiyoruz.
+
+![image](https://github.com/user-attachments/assets/6cf6ea1f-f3d0-4888-927e-047321a81a58)
+
+Buradan EntityLayer katmanını seçiyoruz ve OK diyoruz.
+
+Referans işlemi tamamlandıktan sonra DataAccessLayer katmanına yeni bir klasör oluşturuyoruz ve ismini Context olarak belirliyoruz.
+Context Code First projelerinde bizim veri tabanı bağlantı adresimizi tuttuğumuz ve veri tabanına yansıyacak olan tabloları tuttuğumuz bir sınıf görevi görmektedir.
+Context klasörüne sağ tıklayıp bir tane Class oluşturuyoruz ve ismini KampContext olarak belirliyoruz.
