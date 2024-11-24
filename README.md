@@ -434,3 +434,75 @@ NOT: sysdiagrams, SQL Server'da veritabanı diyagramlarını yönetmek için kul
 ![image](https://github.com/user-attachments/assets/8a6bf15a-4540-4988-aa72-d3346bba764b)
 
 Modelimiz artık hazır.
+
+## 🖥️ C# Eğitim Kampı Ders 15 - Entity Framework Metotları ile Proje Uygulaması
+### 📆 Tarih: 16 Kasım 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+![image](https://github.com/user-attachments/assets/9c3144cf-221a-4837-9df5-17ca8d73a441)
+
+Burada daha önceden oluşturduğumuz BootcampEfTravelDb veri tabanına geliyoruz. Oluşturduğumuz TblCustomer tablosuna gelip yeni bir sütun ekliyoruz. Sütunun ismini CustomerBalance olarak ekliyoruz ve veri tipini decimal(18, 2) olarak belirliyoruz.
+
+![image](https://github.com/user-attachments/assets/4667f4ae-186c-4ef0-abcf-66ef5a1b1d65)
+
+Sütunu ekledikten sonra tekrardan C# modelimize geliyoruz ve boş alana sağ tıklayıp Update model from Database olana tıklıyoruz.
+
+![image](https://github.com/user-attachments/assets/22f206d4-4c25-4f6f-b2fb-fed93927906d)
+
+Burada herhangi bir seçeneğe tıklamadan direkt Finish diyoruz. Finish dedikten sonra modelimizi kaydediyoruz.
+
+![image](https://github.com/user-attachments/assets/5843853c-0704-4db7-94a9-b5e59684a1df)
+
+SQL veri tabanımıza tekrar geliyoruz ve bu kez yeni bir tablo oluşturuyoruz. Tablonun ismini TblAdmin olarak belirledik.
+
+Tekrardan C# modelimize geliyoruz ve boş alana sağ tıklayıp Update model from Database olana tıklıyoruz.
+
+![image](https://github.com/user-attachments/assets/1ec982c6-73d4-4c06-b7c1-bf6efa2a037c)
+
+Bu kez yeni bir tablo oluşturduğumuz için buradaki Tables kısmını seçmemiz gerekecek. Finish diyoruz ve kaydediyoruz.
+
+![image](https://github.com/user-attachments/assets/7ea4839f-6ad4-400e-bab9-2c49daeb7683)
+
+SQL'e tekrar geliyoruz ve TblGuide tablosuna gelip veri girişleri yapıyoruz.
+
+![image](https://github.com/user-attachments/assets/5d63f120-58e8-457c-abee-452dc9bc7f37)
+
+Veri girişlerini yaptıktan sonra C# uygulamasından Form1 kısmına geliyoruz ve tasarımlarımızı yapıyoruz.
+
+Burada ilk olarak Listele işlemini yapacağız. Listele butonuna çift tıklıyoruz.
+
+![image](https://github.com/user-attachments/assets/c8309bdb-77bf-4429-8a15-a28272940857)
+
+Listeleme işlemine baktığımız zaman ADO.NET'e göre kodlar daha kısa halindedir, ancak ilk satırda yazdığımız kod sadece o alanda çalışacaktır. Ekleme, silme işlemleri için de aynı şekilde bu komutu kullanmamız gerekecektir ancak kod yükü artmaması için ilk satırda yer alan kodu global alana taşımak doğru olacaktır.
+
+![image](https://github.com/user-attachments/assets/071497e4-2055-4676-a958-43fb1328a63d)
+
+Burada ekleme işlemini yaptık. Listeleme işleminde ilk sırada yer alan kodu lokal alanın dışına taşıdık. Böylece db değişkeni tüm alanda çalışacaktır.
+
+![image](https://github.com/user-attachments/assets/39a9aa9e-4e66-4473-a273-b85ec443f60e)
+
+Burada önce Listele butonuna bastığımız zaman SQL'de yer alan veriler burada gözükecektir. Yeni bir tane veri girişi yaptıktan sonra Ekle butonuna bastığımız zaman karşımıza mesaj ekranı çıkmaktadır. Tekrardan Listele butonuna bastığımız zaman eklediğimiz son veri gözükecektir.
+
+![image](https://github.com/user-attachments/assets/3635f97f-bc70-431b-b9e5-f517f68fdb94)
+
+Silme işlemi ID'ye göre yapılmalıdır. Bunun için ilk olarak int türünde id değişkeni oluşturuyoruz. Daha sonra var türünden removeValue değişkenini tanımlayarak TblGuide adlı tabloda yer alan ID'ye göre bulmak için Find metodunu yazıyoruz. Daha sonra silmek için Remove metodunu kullanıyoruz. En sonda yaptığımız değişiklikleri kaydediyoruz.
+
+![image](https://github.com/user-attachments/assets/fa3fd3d4-2730-4069-b037-968b1cc6dba7)
+
+Programı çalıştırdıktan sonra silmek istediğimiz ID numarasını yazıyoruz. Burada ID alanını 3 yazdıktan sonra Sil butonuna tıklıyoruz. Eğer yazılan kodlarda hata yoksa karşımıza sildiğimize dair mesaj ekranı çıkacaktır.
+
+![image](https://github.com/user-attachments/assets/c6269c2f-f840-4eb4-8a69-1ded523ff807)
+
+Güncelleme işlemi için silme işleminde olduğu gibi ilk olarak int türünde id değişkeni oluşturuyoruz. Daha sonra var türünden updateValue değişkenini tanımlayarak TblGuide adlı tabloda yer alan ID'ye göre bulmak için Find metodunu yazıyoruz. Daha sonra güncellenmesi için sütunda yer alan bütün verileri tek tek textbox'a karşılık gelen değerlerimizi yazıyoruz ve değişiklikleri kaydediyoruz.
+
+![image](https://github.com/user-attachments/assets/51ae8121-4b90-48e7-9eff-bf4c598ec08c)
+
+Burada güncellemek istediğimiz kişinin önce ID numarasını, daha sonra adını ve soyadını yazıyoruz. Cem Bulut olan ismini Can Bulutlu olarak değiştiriyoruz.
+
+![image](https://github.com/user-attachments/assets/df072c2d-8f6b-4a02-adf4-8a6ee14d74a1)
+
+ilk olarak int türünde id değişkeni oluşturuyoruz. Daha sonra burada bir şart yazıyoruz. Şart için Where metodunu kullanıyoruz. Burada x => ifadesi C#'da Lambda Expression diye geçmektedir. Buradaki ifadeyi int türünde oluşturduğumuz id ifadesiyle eşleştiriyoruz ve ToList metodunu kullanıyoruz. Ardından datagridview tablosunda gösteriyoruz. Burada bütün listeyi değil sadece şartı sağlayanları listede gösterecektir.
+
+![image](https://github.com/user-attachments/assets/73e60572-46a7-4fb9-8628-2c4c499a54ec)
+
+Örnek olarak burada ID numarasını 2 olarak yazdıktan sonra ID'ye Göre Getir butonuna bastığımız zaman sadece 2 numaralı olan kişiyi getirecektir.
