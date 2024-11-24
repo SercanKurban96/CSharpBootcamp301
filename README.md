@@ -506,3 +506,44 @@ ilk olarak int türünde id değişkeni oluşturuyoruz. Daha sonra burada bir ş
 ![image](https://github.com/user-attachments/assets/73e60572-46a7-4fb9-8628-2c4c499a54ec)
 
 Örnek olarak burada ID numarasını 2 olarak yazdıktan sonra ID'ye Göre Getir butonuna bastığımız zaman sadece 2 numaralı olan kişiyi getirecektir.
+
+
+## 🖥️ C# Eğitim Kampı Ders 16 - Entity Framework: Tur Projesi Location İşlemleri
+### 📆 Tarih: 19 Kasım 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+Bir önceki dersin tekrarını yapacağız. Önceki derste Rehber İşlemleri formu oluşturmuştuk. Bu derste ise Lokasyon İşlemleri'ni gerçekleştireceğiz.
+
+![image](https://github.com/user-attachments/assets/bb5df4c7-affd-44db-8fa5-88f986ee769e)
+
+Bunun için CSharpBootcamp301.EFProject katmanına sağ tıklayıp Add kısmından Form (Windows Forms) kısmına geliyoruz.
+
+![image](https://github.com/user-attachments/assets/788e8337-7baf-4e18-afe6-e5bd6e8d2e09)
+
+Oluşturacağımız Form'un ismini FrmLocation olarak belirliyoruz.
+
+![image](https://github.com/user-attachments/assets/34a332ae-8dca-4e10-9308-8a033ed2ff97)
+
+FrmLocation tasarımını bu şekilde oluşturduk. Kapasite için araç olarak "NumericUpDown", Rehber için araç olarak "ComboBox" kullandık.
+
+![image](https://github.com/user-attachments/assets/17484134-1a4c-4502-91a2-2f423603c14d)
+
+Programı çalıştırdığımız zaman yeni forma gitmesi için buradan Program.cs kısmına geliyoruz.
+
+![image](https://github.com/user-attachments/assets/018d1c14-2873-46e3-9fea-140e7f073744)
+
+Buradan Application.Run fonksiyonunda yer alan new Form1 yerine FrmLocation yazıyoruz. Daha sonra SQL'e gidip TblLocation tablosuna ait veri girişleri yapıyoruz.
+
+![image](https://github.com/user-attachments/assets/4e41afae-30d0-4e2d-90e6-31bb8154d3e0)
+
+TblLocation tablosuna ait veri girişlerimizi yaptık.
+
+![image](https://github.com/user-attachments/assets/4659f397-7465-489b-ad54-1d85fe9b3f48)
+
+Form ilk açıldığı zaman ComboBox'a direkt rehberin adı ve soyadını çekmesi için ilk olarak var türünden values adında bir değişken kullandık. Buradan TblGuide tablosundan Select metodunu kullanarak Lambda Expression yöntemiyle "FullName" adında bir değişken oluşturduk. Buradan hem adını hem de soyadını ve ID'yi getirdik. Daha sonra ComboBox'a adını verdiğimiz cmbGuide işleminde DisplayMember ve ValueMember komutlarını yazdık. DisplayMember, kullanıcının gördüğü tarafı, ValueMember ise arka planda hangi değeri tutacağı belirtmektedir. Buradaki DisplayMember kısmında daha önce tanımladığımız FullName ismini, ValueMember kısmı ise SQL'de oluşturduğumuz GuideID ismini yazıyoruz. Buradaki isim SQL'deki sütun ismiyle aynı olmak zorundadır. En sonda verileri göstermek için DataSource komutunu kullanarak values ile eşitledik.
+
+![image](https://github.com/user-attachments/assets/b12ffaa9-cdd8-4cae-a994-f1305e49d597)
+
+![image](https://github.com/user-attachments/assets/bc6fff32-9777-4709-bf03-ea5d36c04b92)
+
+Listeleme, ekleme, silme ve güncelleme komutları bu şekildedir.
