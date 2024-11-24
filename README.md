@@ -228,3 +228,93 @@ Bağlantı adresimizi vermek için configuration bittiği kısmın hemen üstün
 ## connectionString bağlantı adresin olduğu kısmı temsil etmektedir. Yazacağımız komut sırayla şu şekilde olacaktır. Data Source = "SQL'e bağlanırken gelen bir bağlantı sunucu adresimizi temsil eder." ; initial Catalog = "Oluşturacağımız veri tabanın ismidir." ; integrated security = true kısmı ise bağlantının güvenli olduğunu bildirmek için kullanılır. Daha sonra providerName = "System.Data.SqlClient" olacaktır.
 
 ### DataAccessLayer katmanına gidip kalan klasörlerimizi oluşturuyoruz. Bu klasörler; Repositories, Abstract ve EntityFramework olacaktır.
+
+## 🖥️ C# Eğitim Kampı Ders 13 - OOP Modülü: Migration İşlemleri ve Abstract Interfaceler
+### 📆 Tarih: 9 Kasım 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+Bu eğitimde "Migration" işlemini yapacağız.
+
+![image](https://github.com/user-attachments/assets/e5008cbe-77dd-4e10-badd-4a55c14dfef0)
+
+Burada Package Manager Console uygulamasını açmak için Yukarıda yer alan View kısmında yer alan Other Windows kısmına geliyoruz ve Package Manager Console kısmını seçiyoruz. Diğer bir yol ise Yukarıda yer alan Tools kısmından NuGet Package Manager kısmına geliyoruz ve Package Manager Console kısmını seçiyoruz.
+
+### NOT: Uygulama başlangıcında PresentationLayer katmanında çalışması gerekmektedir.
+
+![image](https://github.com/user-attachments/assets/790468ff-8eed-4ed2-b60d-7cbe5d081ddf)
+
+Package Manager Console bu şekilde karşımıza çıkacaktır. Burası hem migration komutlarını yazabileceğimiz, hem de paket yüklemesi yapabileceğimiz konsol ekranıdır. Clear yazdığımızda ekranı temizleyecektir.
+
+![image](https://github.com/user-attachments/assets/288397bb-3638-4e97-9d04-29604a6baed3)
+
+### Not: Migration işlemlerini yapabilmek için burada Default project kısmından mutlaka DataAccessLayer katmanı seçilmelidir.
+
+![image](https://github.com/user-attachments/assets/c5157515-33a6-4198-bbdb-5b0ca880a623)
+
+Migration işlemini aktif edebilmek için yazacağımız komut: enable-migrations olacaktır. Bu işlem biraz uzun sürecektir.
+
+![image](https://github.com/user-attachments/assets/560e93d2-8748-470d-b410-1c9324cf2bd4)
+
+Karşımıza bu şekilde çıkacaktır.
+
+![image](https://github.com/user-attachments/assets/039a537a-610c-4c5d-bf89-e88f3cec8339)
+
+Burada AutomaticMigrationsEnabled = false yazan kısmı true olacak şekilde belirtmemiz gerekir.
+
+![image](https://github.com/user-attachments/assets/84ad7fa8-8e29-4993-8501-98ffcfe1632f)
+
+Veri tabanına yansıtmak için update-database komutunu yazıyoruz.
+
+![image](https://github.com/user-attachments/assets/fa6b6e06-fc9a-4781-8072-c358e99bb1d9)
+
+Ekranda bu şekilde çıktıysa veri tabanına yansıma işlemi tamamlandı demektir.
+
+![image](https://github.com/user-attachments/assets/f1d5f9d7-e252-4ddc-9024-1cfb3018f872)
+
+SQL'e baktığımızda veri tabanı ve tablolar oluşturuldu.
+
+![image](https://github.com/user-attachments/assets/cd772ad4-261e-4919-9846-d1c57cc183a6)
+
+Category tablosunda yer alan propertyler burada gözükmektedir.
+
+İşlemler tamamlandıktan sonra EntityLayer katmanında yer alan Customer sınıfına yeni bir property ekliyoruz.
+
+![image](https://github.com/user-attachments/assets/5e02c8b1-ff8b-47eb-b119-521d16f7d99e)
+
+Burada bir tane bool türünden CustomerStatus ekledik. Tekrardan migration işlemini uyguluyoruz.
+
+![image](https://github.com/user-attachments/assets/3a004d48-af15-4cac-a607-2852789da69b)
+
+Buradan itibaren artık tekrardan enable-migrations dememize gerek yoktur, çünkü migration otomatik olarak güncellenecektir. Bunun için add-migration komutundan sonra istediğimiz bir isim belirliyoruz. Burada mig1 olarak belirledik.
+
+![image](https://github.com/user-attachments/assets/144c960c-0e26-45cc-96e5-ac83ab5b51a3)
+
+Karşımıza bu şekilde çıkmaktadır. Sağ tarafta DataAccessLayer katmanında yer alan Migrations klasörüne baktığımızda burada ismini verdiğimiz mig1 sınıfı oluşturuldu.
+
+İşlemimizi tamamladıktan sonra tekrardan update-database diyoruz.
+
+Artık DataAccessLayer katmanında yer alan Abstract klasörüne gelip buradan işlemlerimizi yapabiliriz. Abstract klasörü bizim interfacelerimizi tutacaktır. Interfaceler, bizim entitylerimiz için bütün entitylerde standart olan bazı metotlar var. Ekleme, silme, güncelleme, listeleme, ID'ye göre getirme gibi... Burada değişen tek şey entitynin kendisi olacaktır, ancak diğer işlemler aynı şekilde olacaktır. Burada Repository Design Pattern kullanıyor olacağız.
+
+![image](https://github.com/user-attachments/assets/6306cb51-c71b-4821-ba46-b4526903a751)
+
+Abstract klasörüne sağ tıklayıp Add kısmından New Item diyoruz.
+
+![image](https://github.com/user-attachments/assets/87a8e436-51b4-4cee-a424-ab5a82d738c2)
+
+Buradan Class değil, Interface olanı seçiyoruz ve ismini IGenericDal olarak belirliyoruz.
+
+![image](https://github.com/user-attachments/assets/931ad352-6cec-4b4f-99d6-cb68d705f594)
+
+Burada dışarıdan bir T değeri almalı ve bir tane şart yazılmalıdır. Bu T değeri mutlaka bir class olmalıdır. Böylece dışarıdan harici bir interface, method veya bileşen gelmemelidir. Burada ekle, sil, güncelle işlemlerini bu interface'e uygulayacağız.
+
+![image](https://github.com/user-attachments/assets/399bd41e-c163-42d5-a585-935c2b93acbd)
+
+Burada 5 tane metot ekledik. İlk olarak void türünden Insert isminde bir metot ekledik. Parantez içerisinde T türünden entity parametresi olarak belirledik. İkinci metotta tekrar void türünden Update isminde bir metot ekledik. Parantez içerisinde T türünden entity parametresi olarak belirledik. Üçüncü metotta void türünden Delete için bir tane int türünden ID göndermemiz gerekecektir. Ardından bir tane List oluşturuyoruz ve T türünden GetAll isminde bütün verileri getirecek olan bir metot oluşturuyoruz. Son olarak T türünde GetByID isminde dışarıdan bir int id parametresi alan bir metot tanımlamış olduk.
+
+Abstract klasöründen bir tane daha Interface oluşturalım. Bu kez ICategoryDal ismini verelim.
+
+![image](https://github.com/user-attachments/assets/33b808f1-2f11-4b4f-8643-a94ce05cefe6)
+
+Public olarak belirledikten sonra ICategoryDal sonuna gelip : işareti koyuyoruz ve IGenericDal'dan miras alıyoruz. Bu mirası Category sınıfından almış oluyoruz. Artık Category sınıfı için ekleme, silme, güncelleme işlemlerini hazır hale getirmiş olduk.
+
+Diğer bütün interfacelerini de aynı şekilde yapıyoruz.
