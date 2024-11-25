@@ -9,15 +9,13 @@
 
 Katmanlar sorumlulukların ayrılması ve bağımlılıkların yönetilmesi için kullanılan bir yöntemdir. Her katmanın belirli bir sorumluluğu vardır. Daha yüksek bir katman, hizmetleri daha düşük bir katmanda kullanabilir ancak daha düşük bir katman, hizmetleri daha yüksek bir katmanda kullanamaz. N katmanlı mimariler şunlardır:
 
-## EntityLayer
-Bu katmanda projeye ait entityler tanımlanacak.
-## DataAccessLayer
-Bu katmanda projeyle ilgili veri tabanı işlemleri yazılacak.
-## BusinessLayer
-Bu katmanda logic sorgulamaları yapılacak.
-## PresentationLayer
-Bu katmanda ise veritabanında çektiğimiz verileri kullanıcıya sunma katmanımızdır.
+** EntityLayer: Bu katmanda projeye ait entityler tanımlanacak.
 
+** DataAccessLayer: Bu katmanda projeyle ilgili veri tabanı işlemleri yazılacak.
+
+** BusinessLayer: Bu katmanda logic sorgulamaları yapılacak.
+
+** PresentationLayer: Bu katmanda ise veritabanında çektiğimiz verileri kullanıcıya sunma katmanımızdır.
 
 ![Ekran görüntüsü 2024-11-24 134015](https://github.com/user-attachments/assets/224b26f4-1a33-4c51-816f-3f3a56fc3c41)
 
@@ -125,6 +123,8 @@ Bütün "Class"larımızı tanımladıktan sonra diğer katmanlarımızı da olu
 
 Projemizin son hali bu şekilde olacaktır.
 
+✅ Bu eğitimde N Katmanlı Mimari'lerin ne işe yaradıklarını, katmanları ve EntityLayer katmanında yer alan entityleri oluşturmayı, Field-Variable-Property arasındaki farkları ve SOLID prensiplerin ne işe yaradıklarını öğrendim ve uyguladım.
+
 ## 🖥️ C# Eğitim Kampı Ders 12 - OOP Modülü: Data Access Katmanı ve Context Sınıfı
 ### 📆 Tarih: 6 Kasım 2024
 ### 📋 C# ile Yapılan Uygulamalar:
@@ -223,11 +223,13 @@ Paketi yükledikten sonra karşımıza bu şekilde çıkacaktır.
 
 Bağlantı adresimizi vermek için configuration bittiği kısmın hemen üstüne connectionStrings etiketi oluşturuyoruz. Daha sonra add kısmından name diyoruz.
 
-## "name" kısmı bağlantı adresimize ait tablolar hangi sınıfta tutuluyorsa "KampContext" buraya ismini veriyoruz.
+"name" kısmı bağlantı adresimize ait tablolar hangi sınıfta tutuluyorsa "KampContext" buraya ismini veriyoruz.
 
-## connectionString bağlantı adresin olduğu kısmı temsil etmektedir. Yazacağımız komut sırayla şu şekilde olacaktır. Data Source = "SQL'e bağlanırken gelen bir bağlantı sunucu adresimizi temsil eder." ; initial Catalog = "Oluşturacağımız veri tabanın ismidir." ; integrated security = true kısmı ise bağlantının güvenli olduğunu bildirmek için kullanılır. Daha sonra providerName = "System.Data.SqlClient" olacaktır.
+connectionString bağlantı adresin olduğu kısmı temsil etmektedir. Yazacağımız komut sırayla şu şekilde olacaktır. Data Source = "SQL'e bağlanırken gelen bir bağlantı sunucu adresimizi temsil eder." ; initial Catalog = "Oluşturacağımız veri tabanın ismidir." ; integrated security = true kısmı ise bağlantının güvenli olduğunu bildirmek için kullanılır. Daha sonra providerName = "System.Data.SqlClient" olacaktır.
 
 ### DataAccessLayer katmanına gidip kalan klasörlerimizi oluşturuyoruz. Bu klasörler; Repositories, Abstract ve EntityFramework olacaktır.
+
+✅ Bu eğitimde entityler arasındaki ilişkileri kurmayı, katmanlarda yer alan paketleri kurmayı, referansları eklemeyi, bağlantı sınıfının nasıl oluşturulduğunu öğrendim ve uyguladım.
 
 ## 🖥️ C# Eğitim Kampı Ders 13 - OOP Modülü: Migration İşlemleri ve Abstract Interfaceler
 ### 📆 Tarih: 9 Kasım 2024
@@ -318,6 +320,8 @@ Abstract klasöründen bir tane daha Interface oluşturalım. Bu kez ICategoryDa
 Public olarak belirledikten sonra ICategoryDal sonuna gelip : işareti koyuyoruz ve IGenericDal'dan miras alıyoruz. Bu mirası Category sınıfından almış oluyoruz. Artık Category sınıfı için ekleme, silme, güncelleme işlemlerini hazır hale getirmiş olduk.
 
 Diğer bütün interfacelerini de aynı şekilde yapıyoruz.
+
+✅ Bu eğitimde migration yapmak için gerekli olan komutları yazmayı, N Katmanlı Mimari'de yer alan DataAccessLayer katmanına ait olan Abstract klasöründe yer alan Interface'leri oluşturmayı, CRUD işlemlerini oluşturmayı öğrendim ve uyguladım.
 
 ## 🖥️ C# Eğitim Kampı Ders 14 - Orm Yapısı: Entity Framework DbFirst ve Model Oluşturma
 ### 📆 Tarih: 12 Kasım 2024
@@ -435,6 +439,8 @@ NOT: sysdiagrams, SQL Server'da veritabanı diyagramlarını yönetmek için kul
 
 Modelimiz artık hazır.
 
+✅ Bu eğitimde bir Db First oluşturmayı, modelin nasıl oluşturulduğunu, Entity Framework'ün ne işe yaradığını öğrendim ve uyguladım.
+
 ## 🖥️ C# Eğitim Kampı Ders 15 - Entity Framework Metotları ile Proje Uygulaması
 ### 📆 Tarih: 16 Kasım 2024
 ### 📋 C# ile Yapılan Uygulamalar:
@@ -507,6 +513,7 @@ ilk olarak int türünde id değişkeni oluşturuyoruz. Daha sonra burada bir ş
 
 Örnek olarak burada ID numarasını 2 olarak yazdıktan sonra ID'ye Göre Getir butonuna bastığımız zaman sadece 2 numaralı olan kişiyi getirecektir.
 
+✅ Bu eğitimde Entity Framework ile temel CRUD işlemlerinin nasıl yapıldığını öğrendim ve uyguladım.
 
 ## 🖥️ C# Eğitim Kampı Ders 16 - Entity Framework: Tur Projesi Location İşlemleri
 ### 📆 Tarih: 19 Kasım 2024
@@ -547,3 +554,78 @@ Form ilk açıldığı zaman ComboBox'a direkt rehberin adı ve soyadını çekm
 ![image](https://github.com/user-attachments/assets/bc6fff32-9777-4709-bf03-ea5d36c04b92)
 
 Listeleme, ekleme, silme ve güncelleme komutları bu şekildedir.
+
+✅ Bu eğitimde Entity Framework ile temel CRUD işlemlerinin bu kez Lokasyon İşlemleri üzerinden nasıl yapıldığını öğrendim ve uyguladım.
+
+## 🖥️ C# Eğitim Kampı Ders 17 - Entity Framework Metotları ve Linq Sorgular
+### 📆 Tarih: 23 Kasım 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+Bu derste LINQ sorguları kullanarak istatistik oluşturacağız.
+
+### LINQ Nedir?
+LINQ (Language Integrated Query — Dil ile Tümleşik Sorgu); veri koleksiyonlarını sorgulamak, verileri filtrelemek veya dönüştürmek gibi işlemleri kolaylaştıran güçlü bir teknolojidir.
+
+Projemize yeni bir Windows Form oluşturuyoruz ve ismini FrmStatistics olarak belirliyoruz.
+
+Kullanılan Araçlar: Panel, Label
+
+![image](https://github.com/user-attachments/assets/8e347720-a544-4c79-a073-6d5d1a4f8c72)
+
+FrmStatistics tablosu bu şekilde hazırlanmıştır.
+
+![image](https://github.com/user-attachments/assets/714c000f-c02a-4dde-97a8-a715018f7d5f)
+
+İstatistik formunda yer alan birinci kısımda bizden "Lokasyon Sayısı" bulmamız istenmektedir. Sayısını bulmak için TblLocation tablosundan Count metodunu uyguluyoruz.
+
+![image](https://github.com/user-attachments/assets/c1d15c57-4146-467a-ab7b-a72d9dbdbabc)
+
+Toplam kapasiteyi bulmak için bu kez TblLocation tablosundan Sum metoduyla "Capacity" olan değerini topluyoruz.
+
+![image](https://github.com/user-attachments/assets/603bdea2-fdd9-45d1-9643-bc90c479b927)
+
+Rehber sayısını bulmak için bu kez TblGuide tablosundan Count metodunu uyguluyoruz.
+
+![image](https://github.com/user-attachments/assets/a2b9c214-d44f-40da-b228-dc598e0c79cc)
+
+Ortalama kapasiteyi bulmak için TblLocation tablosundan bu kez Average metoduyla "Capacity" olan değerinin ortalamasını alıyoruz. Buradaki sonuç virgülden sonra küsüratlı sayı verecektir, ancak biz sadece virgülden sonra iki basamak görmemiz için burada hata vermemesi adına ilk olarak ?(nullable) işaretini ekliyoruz ve daha sonra ToString metodundan sonra parantez içine iki basamaklıyı görebilmemiz için "0.00" değerini yazdık.
+
+![image](https://github.com/user-attachments/assets/160f4429-c21d-4edd-abe0-708702371e86)
+
+Ortalama tur fiyatını bulmak için TblLocation tablosundan Average metoduyla bu kez "Price" olan değerinin ortalamasını alıyoruz.
+
+![image](https://github.com/user-attachments/assets/42fbe53a-6ae2-419b-b637-0f9d6268cca1)
+
+Eklenen son ülkeyi bulmak için burada bir tane int tipinde ülkeye dair bir ID değişkeni oluşturduk. Buradaki Max metodu en büyük olan değeri almaktadır. Buradaki ID değerini almamızın sebebi en son değer hangisiyse onu alacaktır. Form'a yansıtmak için burada şartlı işlem yapabilmek için Where metodunu kullanıyoruz. Where metodundan sonra burada bizim ülkeyi bulmamız için önce LocationID'yi bulmamız gerekmektedir. LocationID'yi ilk oluşturduğumuz int tipinde olan değişken birbirine eşitse Select metodundan ülkeyi seçiyoruz. 
+
+FirstOrDefault(): Bu yöntem, belirtilen bir koşulu karşılayan bir dizinin ilk öğesini veya böyle bir öğe bulunamazsa varsayılan bir değeri döndürür.
+
+![image](https://github.com/user-attachments/assets/ed4a7f18-e1b5-48dd-a066-cf533dc782cf)
+
+Kapadokya tur kapasitesini bulmak için burada TblLocation tablosundan bir şart yazmamız gerekecektir. Buradaki şart City değeri Kapadokya değerine eşit midir ona bakılmalıdır, ancak burada yazılan Kapadokya değeri SQL'de yer alan değerle aynı olmalıdır. Eğer değer eşitse Select metodundan Capacity değerini buluyoruz ve FirstOrDefault metodunu uyguluyoruz.
+
+![image](https://github.com/user-attachments/assets/36d8ab0e-9742-4b39-97bb-3f9cb9b8cf74)
+
+Türkiye turları ortalama kapasiteyi bulmak için TblLocation tablosundan bir şart yazmamız gerekecektir. Buradaki şart Country değeri Türkiye ise Average metodunu kullanarak Capacity değerinin ortalamasını alıyoruz.
+
+![image](https://github.com/user-attachments/assets/c4d111dc-26f9-45d6-bf4e-b7d65a5b9006)
+
+Roma gezi rehberini bulmak için burada var tipinde bir romeGuideID değişkeni oluşturuyoruz. Buradaki ilk şart, TblLocation tablosunda ait City üzerinden "Roma Turistik" yazılan değeri bulmak ve GuideID değerine eşitlemektir. Daha sonra TblGuide tablosundaki şart, GuideID değeri romeGuideID değerine eşit midir ona bakılmalıdır. Şart sağlıyorsa burada rehberin adını ve soyadını seçiyoruz ve FirstOrDefault metodunu uyguluyoruz.
+
+![image](https://github.com/user-attachments/assets/4ca48863-3f16-44a4-970c-03f00474d619)
+
+En yüksek kapasiteli turu bulmak için burada var tipinde bir maxCapacity değişkeni oluşturuyoruz. En yüksek kapasiteyi bulmak için TblLocation tablosundan Capacity üzerinden Max metodunu kullanıyoruz. Yazdırmak için TblLocation tablosundan bir Where sorgusu yazıyoruz. Buradaki sorgu TblLocation tablosunda yer alan Capacity ile maxCapacity değeri eşitse City değerini seçiyoruz ve FirstOrDefault metodunu uyguluyoruz.
+
+![image](https://github.com/user-attachments/assets/51ba0d81-9151-4214-9bbc-e7ca91c366fe)
+
+En pahalı turu bulmak için az önceki örnekte yapmış olduğumuz uygulamayı bu kez Capacity yerine Price olarak çeviriyoruz.
+
+![image](https://github.com/user-attachments/assets/5717df4e-8d7e-4d9e-b8f2-d6780a2511d1)
+
+Ayşegül Çınar tur sayısını bulmak için burada var tipinde guideIDByNameAysegulCinar adında bir değişken belirliyoruz. Buradaki şart, TblGuide tablosunda yer alan rehberin adı "Ayşegül" ve soyadı "Çınar" olan değerinin ID'sini getiriyoruz. Daha sonra TblLocation tablosunda yer alan GuideID ile guideIDByNameAysegulCinar değerleri eşitse Count metodunu uygulayarak tur sayısını buluyoruz.
+
+![image](https://github.com/user-attachments/assets/52eb8f25-2134-4862-9b0c-c41497e4d3ad)
+
+Programı çalıştırdıktan sonra "İstatistikler" formunda yer alan sonuçlar bu şekilde karşımıza çıkacaktır.
+
+✅ Bu eğitimde C# kampı çerçevesinde gerçekleştirmiş olduğum LINQ (Language Integrated Query) sorgularıyla istatistik oluşturmayı öğrendim ve uyguladım.
