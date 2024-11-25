@@ -123,6 +123,8 @@ Bütün "Class"larımızı tanımladıktan sonra diğer katmanlarımızı da olu
 
 Projemizin son hali bu şekilde olacaktır.
 
+✅ Bu eğitimde N Katmanlı Mimari'lerin ne işe yaradıklarını, katmanları ve EntityLayer katmanında yer alan entityleri oluşturmayı, Field-Variable-Property arasındaki farkları ve SOLID prensiplerin ne işe yaradıklarını öğrendim ve uyguladım.
+
 ## 🖥️ C# Eğitim Kampı Ders 12 - OOP Modülü: Data Access Katmanı ve Context Sınıfı
 ### 📆 Tarih: 6 Kasım 2024
 ### 📋 C# ile Yapılan Uygulamalar:
@@ -227,6 +229,8 @@ connectionString bağlantı adresin olduğu kısmı temsil etmektedir. Yazacağ�
 
 ### DataAccessLayer katmanına gidip kalan klasörlerimizi oluşturuyoruz. Bu klasörler; Repositories, Abstract ve EntityFramework olacaktır.
 
+✅ Bu eğitimde entityler arasındaki ilişkileri kurmayı, katmanlarda yer alan paketleri kurmayı, referansları eklemeyi, bağlantı sınıfının nasıl oluşturulduğunu öğrendim ve uyguladım.
+
 ## 🖥️ C# Eğitim Kampı Ders 13 - OOP Modülü: Migration İşlemleri ve Abstract Interfaceler
 ### 📆 Tarih: 9 Kasım 2024
 ### 📋 C# ile Yapılan Uygulamalar:
@@ -316,6 +320,8 @@ Abstract klasöründen bir tane daha Interface oluşturalım. Bu kez ICategoryDa
 Public olarak belirledikten sonra ICategoryDal sonuna gelip : işareti koyuyoruz ve IGenericDal'dan miras alıyoruz. Bu mirası Category sınıfından almış oluyoruz. Artık Category sınıfı için ekleme, silme, güncelleme işlemlerini hazır hale getirmiş olduk.
 
 Diğer bütün interfacelerini de aynı şekilde yapıyoruz.
+
+✅ Bu eğitimde migration yapmak için gerekli olan komutları yazmayı, N Katmanlı Mimari'de yer alan DataAccessLayer katmanına ait olan Abstract klasöründe yer alan Interface'leri oluşturmayı, CRUD işlemlerini oluşturmayı öğrendim ve uyguladım.
 
 ## 🖥️ C# Eğitim Kampı Ders 14 - Orm Yapısı: Entity Framework DbFirst ve Model Oluşturma
 ### 📆 Tarih: 12 Kasım 2024
@@ -433,6 +439,8 @@ NOT: sysdiagrams, SQL Server'da veritabanı diyagramlarını yönetmek için kul
 
 Modelimiz artık hazır.
 
+✅ Bu eğitimde bir Db First oluşturmayı, modelin nasıl oluşturulduğunu, Entity Framework'ün ne işe yaradığını öğrendim ve uyguladım.
+
 ## 🖥️ C# Eğitim Kampı Ders 15 - Entity Framework Metotları ile Proje Uygulaması
 ### 📆 Tarih: 16 Kasım 2024
 ### 📋 C# ile Yapılan Uygulamalar:
@@ -505,6 +513,7 @@ ilk olarak int türünde id değişkeni oluşturuyoruz. Daha sonra burada bir ş
 
 Örnek olarak burada ID numarasını 2 olarak yazdıktan sonra ID'ye Göre Getir butonuna bastığımız zaman sadece 2 numaralı olan kişiyi getirecektir.
 
+✅ Bu eğitimde Entity Framework ile temel CRUD işlemlerinin nasıl yapıldığını öğrendim ve uyguladım.
 
 ## 🖥️ C# Eğitim Kampı Ders 16 - Entity Framework: Tur Projesi Location İşlemleri
 ### 📆 Tarih: 19 Kasım 2024
@@ -546,6 +555,7 @@ Form ilk açıldığı zaman ComboBox'a direkt rehberin adı ve soyadını çekm
 
 Listeleme, ekleme, silme ve güncelleme komutları bu şekildedir.
 
+✅ Bu eğitimde Entity Framework ile temel CRUD işlemlerinin bu kez Lokasyon İşlemleri üzerinden nasıl yapıldığını öğrendim ve uyguladım.
 
 ## 🖥️ C# Eğitim Kampı Ders 17 - Entity Framework Metotları ve Linq Sorgular
 ### 📆 Tarih: 23 Kasım 2024
@@ -618,3 +628,4 @@ Ayşegül Çınar tur sayısını bulmak için burada var tipinde guideIDByNameA
 
 Programı çalıştırdıktan sonra "İstatistikler" formunda yer alan sonuçlar bu şekilde karşımıza çıkacaktır.
 
+✅ Bu eğitimde C# kampı çerçevesinde gerçekleştirmiş olduğum LINQ (Language Integrated Query) sorgularıyla istatistik oluşturmayı öğrendim ve uyguladım.
