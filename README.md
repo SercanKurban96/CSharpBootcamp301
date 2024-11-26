@@ -629,3 +629,69 @@ Ayşegül Çınar tur sayısını bulmak için burada var tipinde guideIDByNameA
 Programı çalıştırdıktan sonra "İstatistikler" formunda yer alan sonuçlar bu şekilde karşımıza çıkacaktır.
 
 ✅ Bu eğitimde C# kampı çerçevesinde gerçekleştirmiş olduğum LINQ (Language Integrated Query) sorgularıyla istatistik oluşturmayı öğrendim ve uyguladım.
+
+## 🖥️ C# Eğitim Kampı Ders 18 - EntityState Komutları, Generic Repository Sınıfı ve Ef Sınıfları
+### 📆 Tarih: 26 Kasım 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+Bu eğitimde tekrardan N Katmanlı Mimari tasarımına dönerek DataAccessLayer katmanı üzerinden devam ediyoruz.
+
+![image](https://github.com/user-attachments/assets/b70c70e7-c9cf-40cd-85c4-845f3886a74d)
+
+Repositories klasörüne sağ tıklayıp bir tane class oluşturuyoruz ve ismini GenericRepository olarak belirliyoruz.
+
+GenericRepository class'ı oluşturulduktan sonra daha önce Abstract klasöründe yer alan IGenericDal interface'te CRUD işlemleri mevcuttu. Şimdi burada yer alan GenericRepository class'ın içini dolduracağız.
+
+![image](https://github.com/user-attachments/assets/a891602e-172c-4a78-8046-5ffd582c7ae4)
+
+Buradan IGenericDal interface'i miras alacağız ancak program bize bir hata döndürmektedir. Hata vermesinin sebebi, IGenericDal bir interface ve bunun içinde birtakım metotlar bulunmaktadır. Bu hatayı önlemek için, sol tarafta çıkan hatalı ikona tıklayıp implement interface denilmelidir.
+
+![image](https://github.com/user-attachments/assets/7bb47341-24e2-4052-9b4e-027888125095)
+
+Tüm interfaceleri dahil ettikten sonra bütün metotlar karşımıza çıkmaktadır. Şimdi burada yer alan bütün metotların içini dolduracağız.
+
+![image](https://github.com/user-attachments/assets/92286e77-8767-41fd-a6ac-03edd74ed298)
+
+Burada ilk olarak nesne örneği oluşturuyoruz. Context klasöründe yer alan KampContext nesnesini buraya dahil ediyoruz. Daha sonra DbSet türünden _object nesnesini oluşturuyoruz.
+
+![image](https://github.com/user-attachments/assets/93f89f40-75f8-4a3c-a76d-c0020467b360)
+
+Burada GenericRepository sınıfını çağırmamız için bir tane constructor (yapı) oluşturuyoruz. Kısayoldan yapı oluşturmak için ctor yazıp TAB tuşuna basmamız yeterlidir.
+GenericRepository çağırıldığı anda object'e bir nesne örneği oluşturmakta ve context sınıfından gönderilmiş olduğu entity değerine atamaktadır.
+
+Artık metotların içine object'e bağlı olarak dolduruyoruz.
+
+![image](https://github.com/user-attachments/assets/c382c037-8d07-4d7f-97fe-2c724326cd60)
+
+Metotların içini doldurmadan önce Abstract klasöründe yer alan IGenericDal interface'e gidiyoruz ve bir değişiklik yapıyoruz. Buradaki değişiklik, void Delete metodunda yer alan parantez içindekini T entity olarak değiştiriyoruz.
+
+![image](https://github.com/user-attachments/assets/7d54b8c8-8340-4a97-9378-1f7a42198d7b)
+
+Değişikliği yaptıktan sonra tekrardan GenericRepository class'ına dönüyoruz ve Delete metoduna ait gerekli işlemlerimizi yapıyoruz.
+EntityState bizim için bir Enum olarak gelmektedir. Ekleme, silme, güncelleme ve başka bazı değişiklere izin veren bir kod bloğudur. Bu kod bloğu bu komut sayesinde burada silme işlemini gerçekleştirebiliyoruz.
+
+![image](https://github.com/user-attachments/assets/5872f8c0-0592-45b4-ae87-1c31ae6caffb)
+
+Buradaki bütün verileri getirmek için EntityState'den faydalanmıyoruz, çünkü EntityState üzerinden yapılacak herhangi bir değişiklik olmamasıdır. Buradaki listeyi direkt getirmek için bu komutu uyguluyoruz.
+
+![image](https://github.com/user-attachments/assets/e70a6e8e-70f2-4769-b4a2-097282469e53)
+
+Burada da EntityState'den faydalanmıyoruz. Burada da bir önceki örnekte aynı işlemi uyguluyoruz, ancak burada ID'ye göre bir değer getiriyoruz.
+
+![image](https://github.com/user-attachments/assets/5b790b7d-8676-44a4-b9bc-c442fea522fa)
+
+Ekleme ve güncelleme işlemleri için komutlar bu şekildedir.
+
+GenericRepository class'ında yer alan tüm metotlar tamamlandıktan sonra DataAccessLayer katmanında yer alan EntityFramework klasörüne ait sınıflar oluşturuyoruz.
+
+![image](https://github.com/user-attachments/assets/d9055ea9-c1f6-4577-9d10-ee074891ffa9)
+
+Burada isimlendirirken genelde başına Ef kısaltması olarak belirleriz. Burada yer alan tüm entityler için sınıfları oluşturuyoruz. İlk olarak EfAdminDal üzerinden gidelim.
+
+EntityFramework class'ında şunu yapıyor olacağız. GenericRepository'de ekleme, silme, güncelleme, listeleme ve ID'ye göre getirme işlemlerinin tamamını T'ye göre yapmıştık. Şimdi bu T'ler entity olarak değişecek ve entitylerin yerini alıp her bir entity, bütün CRUD işlemleriyle haberleşecektir.
+
+![image](https://github.com/user-attachments/assets/ccdee286-e027-4524-8caf-91d74c1e4659)
+
+Burada GenericRepository'den miras aldıktan sonra Admin sınıfı için miras alacaktır. Daha sonra IAdminDal'dan da miras alacak. IAdminDal'dan miras almasının sebebi, sadece Admin sınıfına özgü bir metot yazabiliriz. Örneğin sisteme kaydolan son 3 admini getir diyebiliriz. Bu entity'e özgü bir metottur. Diğer entity'ler için de aynı işlemler yapılacaktır.
+
+✅ Bu eğitimde EntityState komutlarını, GenericRepository sınıfını oluşturup içerisine metotları doldurmayı ve EntityFramework sınıflarını oluşturmayı öğrendim ve uyguladım.
