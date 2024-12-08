@@ -695,3 +695,164 @@ EntityFramework class'ında şunu yapıyor olacağız. GenericRepository'de ekle
 Burada GenericRepository'den miras aldıktan sonra Admin sınıfı için miras alacaktır. Daha sonra IAdminDal'dan da miras alacak. IAdminDal'dan miras almasının sebebi, sadece Admin sınıfına özgü bir metot yazabiliriz. Örneğin sisteme kaydolan son 3 admini getir diyebiliriz. Bu entity'e özgü bir metottur. Diğer entity'ler için de aynı işlemler yapılacaktır.
 
 ✅ Bu eğitimde EntityState komutlarını, GenericRepository sınıfını oluşturup içerisine metotları doldurmayı ve EntityFramework sınıflarını oluşturmayı öğrendim ve uyguladım.
+
+## 🖥️ C# Eğitim Kampı Ders 19 - Business Katmanı ve Logic Kurallar
+### 📆 Tarih: 4 Aralık 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+# Business Katmanı nedir?
+Business katmanı, bir yazılım uygulamasının katmanlı mimarisi içinde iş mantığını temsil eden bölümdür. Bu katman, uygulamanın veri ve kullanıcı arayüzü arasındaki bağlantıyı kurar ve iş kurallarını işler. İşte business katmanının temel işlevleri:
+
+## 1. İş Mantığını Yönetmek
+Uygulamanın kuralları, hesaplamaları ve süreçleri bu katmanda uygulanır.
+Örneğin, bir e-ticaret uygulamasında indirim hesaplama ya da stok kontrolü gibi işlemler business katmanında gerçekleştirilir.
+## 2. Veri İşleme ve Manipülasyon
+Veri erişim katmanından gelen ham verileri işleyerek anlamlı sonuçlara dönüştürür.
+İş kurallarına göre veriyi filtreler, dönüştürür veya birleştirir.
+## 3. Bağımsızlık Sağlamak
+Kullanıcı arayüzünden ve veri erişim katmanından bağımsızdır, bu sayede kodun yeniden kullanılabilirliği ve test edilebilirliği artar.
+Değişiklikler sadece ilgili katmanda yapılabilir, bu da bakım sürecini kolaylaştırır.
+## 4. İş Süreçlerini Yönlendirmek
+Birden fazla veri kaynağına ihtiyaç duyulan karmaşık işlemleri koordine eder.
+Örneğin, bir sipariş işlemini tamamlamak için stok kontrolü, ödeme doğrulaması ve fatura oluşturma süreçlerini sıralı bir şekilde yönetir.
+## 5. Servis Katmanlarıyla Entegrasyon
+Business katmanı genellikle servis katmanları (örneğin API'ler) üzerinden erişilir ve diğer sistemlerle entegrasyon sağlar.
+## Özet
+Business katmanı, uygulamanın kalbi gibidir ve bir uygulamanın "nasıl" çalıştığını tanımlar. Bu katman, kodun sürdürülebilirliğini artırır, değişiklikleri kolaylaştırır ve iyi bir yazılım mimarisi oluşturmanın temel taşlarından biridir.
+
+![image](https://github.com/user-attachments/assets/3bf2704f-2848-4970-ba9c-af81ee2c0b97)
+
+BusinessLayer katmanına Abstract ve Concrete adında 2 tane klasör oluşturuyoruz.
+
+Klasörleri oluşturduktan sonra Abstract klasörüne sağ tıklayıp Add kısmından New Item diyoruz ve yeni bir tane Interface ekliyoruz. Bu Interface'in ismine IGenericService olarak belirliyoruz.
+
+![image](https://github.com/user-attachments/assets/d7d66541-6f5a-4924-9975-d6877a4d117d)
+
+Daha önceden DataAccessLayer katmanında yer alan IGenericDal içinde yer alan metotların aynısını buraya uyguluyoruz, ancak bu metotların başlarına T harfini ekliyoruz. Bunların başlarına T harfinin eklenmesinin sebebi, bizim DataAccessLayer katmanının içerisindeki metotlarımızla BusinessLayer katmanının içerisindeki metotlarımız birbirine karışmaması için BusinessLayer katmanındaki başına T harfi ekledik. PresentationLayer katmanında çağırırken başında T harfi olan metotları çağırıyoruz.
+
+Burada her bir entity için tek tek Interface'leri eklememiz gerekmektedir. Örnek olarak ICategoryService ekleyelim.
+
+![image](https://github.com/user-attachments/assets/0022d73a-7abc-497a-93ef-02de1c8114c2)
+
+Burada önce IGenericService'den miras alıyoruz ve Category sınıfını içine ekliyoruz. Diğer Interface'ler için de aynısını yapıyoruz.
+
+Abstract klasöründe yer alan tüm Interface'ler tanımlandıktan sonra bu kez Concrete klasörüne geliyoruz ve buradaki tüm validasyon işlemlerini tek tek yapıyoruz. Buradan bu kez class oluşturuyoruz ve ismini CategoryManager olarak belirliyoruz.
+
+![image](https://github.com/user-attachments/assets/2783186f-a5db-43c6-8ba0-c5533bb27a15)
+
+Buradan ICategoryService'ten miras alıyoruz ancak bize bir hata döndürmektedir. Bu hatanın önüne geçmek için üzerindeki ampul ikonuna tıklayarak Implement interface diyoruz.
+
+![image](https://github.com/user-attachments/assets/97ca3264-03e5-486c-be7a-089a68bf4cf8)
+
+Şimdi tek tek burada Category sınıfı için CRUD işlemlerini gerçekleştiriyoruz. Önce bu CRUD işlemlerinin asıl bağlı olduğu mekanizma olan DataAccess katmanındaki ilgili yapıyı buraya çağırmamız gerekmektedir. Bunun ismi Dependency Injection'dur. Dependency Injection konusu bir sonraki derste anlatılacaktır. Diğer tüm Manager classlarımızı oluşturuyoruz.
+
+Normalde validasyon işlemleri için ayrı bir klasör üzerinden yapılması program açısından daha yararlı olur, ancak burada manuel olarak Manager sınıfının içine yazıyoruz. Burada CustomerManager ile ilgili validasyon işlemlerimizi yazıyoruz.
+
+![image](https://github.com/user-attachments/assets/255ca08a-6ec6-41bb-838a-b41afec35401)
+
+Burada örnek olarak CustomerManager sınıfından ekleme işlemi için bir validasyon işlemi uyguladık. Bu örnek aslında daha da arttırılabilir. Örneğin burada müşterinin adı boş ise veya ismi 3 karakterden az ise gibi bir validasyon işlemini uyguladık. Eğer kurallar sağlanırsa burada ekleme işlemi yapacaktır, aksi takdirde hata verecektir.
+
+![image](https://github.com/user-attachments/assets/c4eb0c31-55ac-4fa0-9173-36cebf2c7117)
+
+PresentationLayer katmanına giderek Form1'de yer alan formumuzun ismini FrmCategory olarak belirliyoruz ve burada tasarımlarımızı yapıyoruz.
+
+Kullanılan Araçlar:
+Label, TextBox, Button, DataGridView, RadioButton
+
+![image](https://github.com/user-attachments/assets/ac3a1d15-69d9-4af2-87c2-2324d160d854)
+
+Formumuzu bu şekilde tasarladık. Şimdi Category işlemleri için Business katmanında yer alan Concrete klasörüne ait CategoryManager sınıfına geliyoruz.
+
+![image](https://github.com/user-attachments/assets/ee84b88b-868d-4e0b-bc10-bfa9333b3de0)
+
+Burada ilk olarak private readonly metodunu kullanarak ICategoryDal'dan _categoryDal isminde bir field tanımlıyoruz. Daha sonrasında bir Constructor oluşturmamız gerekmektedir. Ctrl + . diyerek Generate Constructor diyoruz.
+
+![image](https://github.com/user-attachments/assets/30e118b7-d61c-46b1-9438-b178c2db667e)
+
+Constructor oluşturduk. Artık CRUD işlemlerini yapabiliriz.
+
+![image](https://github.com/user-attachments/assets/84293fcb-cda5-4c0b-a9d3-e6b53d55dd8f)
+
+Burada Business katmanındaki metotlarının içine DataAccess katmanındaki metotlarını çağırmış olduk.
+
+✅ Bu eğitimde Business katmanını ve özelliklerini, Service ve Manager oluşturmayı ve metotları yazmayı, validasyon işlemlerini öğrendim ve uyguladım.
+
+## 🖥️ C# Eğitim Kampı Ders 20 - Dependency Injection
+### 📆 Tarih: 5 Aralık 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+# Dependency Injection nedir?
+Dependency Injection (DI), yazılım geliştirme dünyasında sıkça kullanılan bir tasarım desenidir. Temel amacı, bir sınıfın bağımlılıklarını dışarıdan almasını sağlayarak, bağımlılıkların gevşek bir şekilde bağlanmasını (loose coupling) temin etmektir. Bu, yazılımın daha esnek, test edilebilir ve sürdürülebilir olmasına yardımcı olur.
+
+## Ana Prensipler
+### 1. Bağımlılıkların Harici Yönetimi
+Bir sınıfın ihtiyaç duyduğu nesneler (bağımlılıklar) o sınıfın içinde oluşturulmaz. Bunun yerine, dışarıdan sağlanır.
+
+### 2. Gevşek Bağlanırlık (Loose Coupling)
+Sınıflar arasındaki doğrudan bağımlılıklar azaltılır, bu da kodun daha modüler ve yeniden kullanılabilir olmasını sağlar.
+
+## Dependency Injection'ın Faydaları
+*** Test Edilebilirlik: Sınıfların bağımlılıkları kolayca mock (taklit) edilebilir ve birim testleri daha kolay yazılabilir.
+
+*** Esneklik ve Yeniden Kullanılabilirlik: Bir sınıf, farklı bağımlılıklar ile kullanılabilir.
+
+*** Sürdürülebilirlik: Kodun bakımı ve genişletilmesi kolaylaşır.
+
+## Dependency Injection Türleri
+### 1. Constructor Injection: Bağımlılıklar sınıfın yapıcısı (constructor) aracılığıyla sağlanır.
+### 2. Setter Injection: Bağımlılıklar setter metotları aracılığıyla enjekte edilir.
+### 3. Interface Injection: Bağımlılıklar bir arayüz aracılığıyla sağlanır (daha az yaygın).
+
+## Frameworkler
+*** Bazı popüler DI frameworkleri şunlardır:
+
+*** Java: Spring Framework, Guice
+
+*** .NET: Microsoft Dependency Injection, Autofac
+
+*** Python: Dependency Injector
+
+*** JavaScript: Angular'ın DI modülü
+
+Dependency Injection, özellikle karmaşık ve geniş çaplı projelerde yazılımın kalite standartlarını yükseltmek için oldukça etkili bir yaklaşımdır.
+
+Dependency Injection konusunu anladıktan sonra artık projemize dönebiliriz. SQL veri tabanımızı açıyoruz ve Category tablosuna ait verilerimizi giriyoruz.
+
+![image](https://github.com/user-attachments/assets/6b9671a5-0413-48aa-a598-37a4ec9da9e6)
+
+Category tablosunda verilerimizi eklemiş olduk. Visual Studio'ya gelip PresentationLayer katmanında yer alan FrmCategory formuna gidiyoruz ve ilk olarak listeleme işlemi için Listele butonuna çift tıklayıp kodlarımızı yazmaya başlıyoruz.
+
+![image](https://github.com/user-attachments/assets/b5a83e1a-c820-4b0c-9c83-21cff55fc83b)
+
+Burada private readonly metodunu kullanarak ICategoryService'den miras almış olduk. Daha sonra yapıcı metodun içine de CategoryManager sınıfından bu kez EfCategoryDal'dan miras alıyoruz.
+Listeleme işlemi için ise var türünden categoryValues isminde bir değişken tanımladık ve Business katmanında yer alan TGetAll metodunu buraya çağırmış olduk. DataGridView'den ise verilerimizi göstermiş olduk.
+
+![image](https://github.com/user-attachments/assets/5d8dc639-02ff-4b26-840e-089fa97d5e23)
+
+Listele butonuna tıkladığımız zaman kategoriler karşımıza çıkmış oldu.
+
+![image](https://github.com/user-attachments/assets/99f70968-934f-4d67-81b2-722e7b674e7a)
+
+Ekleme işlemi yapmadan önce bizim entity'den bir tane nesne örneği almamız gerekmektedir. Entity'miz Category sınıfından bir tane category nesne örneği aldık. Daha sonra category parametresinden gelen categoryName değerini textbox'a atıyoruz, categoryStatus değerini ilk başta true olarak belirliyoruz. Daha sonra _categoryService'ten TInsert metodunu ekleyip category'den gelen değeri ekliyoruz. En sonda MessageBox.Show ile bir tane mesaj veriyoruz.
+
+![image](https://github.com/user-attachments/assets/3b82f245-910d-4912-83ec-83e293065dcc)
+
+Ekleme işlemi bu şekildedir. Veri eklendikten sonra tekrardan Listele butonuna basıyoruz.
+
+![image](https://github.com/user-attachments/assets/c0a03ad2-1726-45f1-bdcd-a390baccf82c)
+
+Silme işlemi için ilk önce o verinin ID değerini bulmak gerekir. Bu nedenle int tipinde id isminde bir değişken tanımlayıp txtCategoryID değerine atıyoruz. Daha sonra silinecek değeri bulmak için _categoryService'den TGetByID metodunu kullanarak id değerini atıyoruz. Silme işlemi için ise TDelete metodunu kullanıyoruz.
+
+![image](https://github.com/user-attachments/assets/236026f9-647a-499d-9207-1f33d633c747)
+
+Burada 3 numaralı değeri siliyoruz. Silme işlemi tamamlandıktan sonra tekrardan Listele butonuna tıklıyoruz.
+
+![image](https://github.com/user-attachments/assets/ab8309fa-41fe-4bf4-9a9f-59ab445d09c1)
+
+Güncelleme işlemi için burada updateID ile güncellenecek ID'yi buluyoruz. Daha sonra o ID'ye ait olan updatedValue ile satır kaydını buluyoruz. Daha sonra güncellenecek olan verileri (CategoryName, CategoryStatus) değerlerini atıyoruz. TUpdate metoduyla güncelleme metodunu kullanıyoruz.
+
+![image](https://github.com/user-attachments/assets/70b91cf2-1ec3-4888-b7da-eb9ab5efea54)
+
+Güncelleme işlemi bu şekildedir.
+
+✅ Bu eğitimde Dependency Injection kavramını, BusinessLayer katmanında yer alan CRUD metotlarını PresentationLayer katmanında yer alan CRUD işlemlerinin nasıl yapıldığını öğrendim ve uyguladım.
