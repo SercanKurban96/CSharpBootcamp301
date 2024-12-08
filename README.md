@@ -776,3 +776,83 @@ Constructor oluşturduk. Artık CRUD işlemlerini yapabiliriz.
 Burada Business katmanındaki metotlarının içine DataAccess katmanındaki metotlarını çağırmış olduk.
 
 ✅ Bu eğitimde Business katmanını ve özelliklerini, Service ve Manager oluşturmayı ve metotları yazmayı, validasyon işlemlerini öğrendim ve uyguladım.
+
+## 🖥️ C# Eğitim Kampı Ders 20 - Dependency Injection
+### 📆 Tarih: 5 Aralık 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+# Dependency Injection nedir?
+Dependency Injection (DI), yazılım geliştirme dünyasında sıkça kullanılan bir tasarım desenidir. Temel amacı, bir sınıfın bağımlılıklarını dışarıdan almasını sağlayarak, bağımlılıkların gevşek bir şekilde bağlanmasını (loose coupling) temin etmektir. Bu, yazılımın daha esnek, test edilebilir ve sürdürülebilir olmasına yardımcı olur.
+
+## Ana Prensipler
+### 1. Bağımlılıkların Harici Yönetimi
+Bir sınıfın ihtiyaç duyduğu nesneler (bağımlılıklar) o sınıfın içinde oluşturulmaz. Bunun yerine, dışarıdan sağlanır.
+
+### 2. Gevşek Bağlanırlık (Loose Coupling)
+Sınıflar arasındaki doğrudan bağımlılıklar azaltılır, bu da kodun daha modüler ve yeniden kullanılabilir olmasını sağlar.
+
+## Dependency Injection'ın Faydaları
+*** Test Edilebilirlik: Sınıfların bağımlılıkları kolayca mock (taklit) edilebilir ve birim testleri daha kolay yazılabilir.
+
+*** Esneklik ve Yeniden Kullanılabilirlik: Bir sınıf, farklı bağımlılıklar ile kullanılabilir.
+
+*** Sürdürülebilirlik: Kodun bakımı ve genişletilmesi kolaylaşır.
+
+## Dependency Injection Türleri
+### 1. Constructor Injection: Bağımlılıklar sınıfın yapıcısı (constructor) aracılığıyla sağlanır.
+### 2. Setter Injection: Bağımlılıklar setter metotları aracılığıyla enjekte edilir.
+### 3. Interface Injection: Bağımlılıklar bir arayüz aracılığıyla sağlanır (daha az yaygın).
+
+## Frameworkler
+*** Bazı popüler DI frameworkleri şunlardır:
+
+*** Java: Spring Framework, Guice
+
+*** .NET: Microsoft Dependency Injection, Autofac
+
+*** Python: Dependency Injector
+
+*** JavaScript: Angular'ın DI modülü
+
+Dependency Injection, özellikle karmaşık ve geniş çaplı projelerde yazılımın kalite standartlarını yükseltmek için oldukça etkili bir yaklaşımdır.
+
+Dependency Injection konusunu anladıktan sonra artık projemize dönebiliriz. SQL veri tabanımızı açıyoruz ve Category tablosuna ait verilerimizi giriyoruz.
+
+![image](https://github.com/user-attachments/assets/6b9671a5-0413-48aa-a598-37a4ec9da9e6)
+
+Category tablosunda verilerimizi eklemiş olduk. Visual Studio'ya gelip PresentationLayer katmanında yer alan FrmCategory formuna gidiyoruz ve ilk olarak listeleme işlemi için Listele butonuna çift tıklayıp kodlarımızı yazmaya başlıyoruz.
+
+![image](https://github.com/user-attachments/assets/b5a83e1a-c820-4b0c-9c83-21cff55fc83b)
+
+Burada private readonly metodunu kullanarak ICategoryService'den miras almış olduk. Daha sonra yapıcı metodun içine de CategoryManager sınıfından bu kez EfCategoryDal'dan miras alıyoruz.
+Listeleme işlemi için ise var türünden categoryValues isminde bir değişken tanımladık ve Business katmanında yer alan TGetAll metodunu buraya çağırmış olduk. DataGridView'den ise verilerimizi göstermiş olduk.
+
+![image](https://github.com/user-attachments/assets/5d8dc639-02ff-4b26-840e-089fa97d5e23)
+
+Listele butonuna tıkladığımız zaman kategoriler karşımıza çıkmış oldu.
+
+![image](https://github.com/user-attachments/assets/99f70968-934f-4d67-81b2-722e7b674e7a)
+
+Ekleme işlemi yapmadan önce bizim entity'den bir tane nesne örneği almamız gerekmektedir. Entity'miz Category sınıfından bir tane category nesne örneği aldık. Daha sonra category parametresinden gelen categoryName değerini textbox'a atıyoruz, categoryStatus değerini ilk başta true olarak belirliyoruz. Daha sonra _categoryService'ten TInsert metodunu ekleyip category'den gelen değeri ekliyoruz. En sonda MessageBox.Show ile bir tane mesaj veriyoruz.
+
+![image](https://github.com/user-attachments/assets/3b82f245-910d-4912-83ec-83e293065dcc)
+
+Ekleme işlemi bu şekildedir. Veri eklendikten sonra tekrardan Listele butonuna basıyoruz.
+
+![image](https://github.com/user-attachments/assets/c0a03ad2-1726-45f1-bdcd-a390baccf82c)
+
+Silme işlemi için ilk önce o verinin ID değerini bulmak gerekir. Bu nedenle int tipinde id isminde bir değişken tanımlayıp txtCategoryID değerine atıyoruz. Daha sonra silinecek değeri bulmak için _categoryService'den TGetByID metodunu kullanarak id değerini atıyoruz. Silme işlemi için ise TDelete metodunu kullanıyoruz.
+
+![image](https://github.com/user-attachments/assets/236026f9-647a-499d-9207-1f33d633c747)
+
+Burada 3 numaralı değeri siliyoruz. Silme işlemi tamamlandıktan sonra tekrardan Listele butonuna tıklıyoruz.
+
+![image](https://github.com/user-attachments/assets/ab8309fa-41fe-4bf4-9a9f-59ab445d09c1)
+
+Güncelleme işlemi için burada updateID ile güncellenecek ID'yi buluyoruz. Daha sonra o ID'ye ait olan updatedValue ile satır kaydını buluyoruz. Daha sonra güncellenecek olan verileri (CategoryName, CategoryStatus) değerlerini atıyoruz. TUpdate metoduyla güncelleme metodunu kullanıyoruz.
+
+![image](https://github.com/user-attachments/assets/70b91cf2-1ec3-4888-b7da-eb9ab5efea54)
+
+Güncelleme işlemi bu şekildedir.
+
+✅ Bu eğitimde Dependency Injection kavramını, BusinessLayer katmanında yer alan CRUD metotlarını PresentationLayer katmanında yer alan CRUD işlemlerinin nasıl yapıldığını öğrendim ve uyguladım.
