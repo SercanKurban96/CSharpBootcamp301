@@ -695,3 +695,84 @@ EntityFramework class'ında şunu yapıyor olacağız. GenericRepository'de ekle
 Burada GenericRepository'den miras aldıktan sonra Admin sınıfı için miras alacaktır. Daha sonra IAdminDal'dan da miras alacak. IAdminDal'dan miras almasının sebebi, sadece Admin sınıfına özgü bir metot yazabiliriz. Örneğin sisteme kaydolan son 3 admini getir diyebiliriz. Bu entity'e özgü bir metottur. Diğer entity'ler için de aynı işlemler yapılacaktır.
 
 ✅ Bu eğitimde EntityState komutlarını, GenericRepository sınıfını oluşturup içerisine metotları doldurmayı ve EntityFramework sınıflarını oluşturmayı öğrendim ve uyguladım.
+
+## 🖥️ C# Eğitim Kampı Ders 19 - Business Katmanı ve Logic Kurallar
+### 📆 Tarih: 4 Aralık 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+# Business Katmanı nedir?
+Business katmanı, bir yazılım uygulamasının katmanlı mimarisi içinde iş mantığını temsil eden bölümdür. Bu katman, uygulamanın veri ve kullanıcı arayüzü arasındaki bağlantıyı kurar ve iş kurallarını işler. İşte business katmanının temel işlevleri:
+
+## 1. İş Mantığını Yönetmek
+Uygulamanın kuralları, hesaplamaları ve süreçleri bu katmanda uygulanır.
+Örneğin, bir e-ticaret uygulamasında indirim hesaplama ya da stok kontrolü gibi işlemler business katmanında gerçekleştirilir.
+## 2. Veri İşleme ve Manipülasyon
+Veri erişim katmanından gelen ham verileri işleyerek anlamlı sonuçlara dönüştürür.
+İş kurallarına göre veriyi filtreler, dönüştürür veya birleştirir.
+## 3. Bağımsızlık Sağlamak
+Kullanıcı arayüzünden ve veri erişim katmanından bağımsızdır, bu sayede kodun yeniden kullanılabilirliği ve test edilebilirliği artar.
+Değişiklikler sadece ilgili katmanda yapılabilir, bu da bakım sürecini kolaylaştırır.
+## 4. İş Süreçlerini Yönlendirmek
+Birden fazla veri kaynağına ihtiyaç duyulan karmaşık işlemleri koordine eder.
+Örneğin, bir sipariş işlemini tamamlamak için stok kontrolü, ödeme doğrulaması ve fatura oluşturma süreçlerini sıralı bir şekilde yönetir.
+## 5. Servis Katmanlarıyla Entegrasyon
+Business katmanı genellikle servis katmanları (örneğin API'ler) üzerinden erişilir ve diğer sistemlerle entegrasyon sağlar.
+## Özet
+Business katmanı, uygulamanın kalbi gibidir ve bir uygulamanın "nasıl" çalıştığını tanımlar. Bu katman, kodun sürdürülebilirliğini artırır, değişiklikleri kolaylaştırır ve iyi bir yazılım mimarisi oluşturmanın temel taşlarından biridir.
+
+![image](https://github.com/user-attachments/assets/3bf2704f-2848-4970-ba9c-af81ee2c0b97)
+
+BusinessLayer katmanına Abstract ve Concrete adında 2 tane klasör oluşturuyoruz.
+
+Klasörleri oluşturduktan sonra Abstract klasörüne sağ tıklayıp Add kısmından New Item diyoruz ve yeni bir tane Interface ekliyoruz. Bu Interface'in ismine IGenericService olarak belirliyoruz.
+
+![image](https://github.com/user-attachments/assets/d7d66541-6f5a-4924-9975-d6877a4d117d)
+
+Daha önceden DataAccessLayer katmanında yer alan IGenericDal içinde yer alan metotların aynısını buraya uyguluyoruz, ancak bu metotların başlarına T harfini ekliyoruz. Bunların başlarına T harfinin eklenmesinin sebebi, bizim DataAccessLayer katmanının içerisindeki metotlarımızla BusinessLayer katmanının içerisindeki metotlarımız birbirine karışmaması için BusinessLayer katmanındaki başına T harfi ekledik. PresentationLayer katmanında çağırırken başında T harfi olan metotları çağırıyoruz.
+
+Burada her bir entity için tek tek Interface'leri eklememiz gerekmektedir. Örnek olarak ICategoryService ekleyelim.
+
+![image](https://github.com/user-attachments/assets/0022d73a-7abc-497a-93ef-02de1c8114c2)
+
+Burada önce IGenericService'den miras alıyoruz ve Category sınıfını içine ekliyoruz. Diğer Interface'ler için de aynısını yapıyoruz.
+
+Abstract klasöründe yer alan tüm Interface'ler tanımlandıktan sonra bu kez Concrete klasörüne geliyoruz ve buradaki tüm validasyon işlemlerini tek tek yapıyoruz. Buradan bu kez class oluşturuyoruz ve ismini CategoryManager olarak belirliyoruz.
+
+![image](https://github.com/user-attachments/assets/2783186f-a5db-43c6-8ba0-c5533bb27a15)
+
+Buradan ICategoryService'ten miras alıyoruz ancak bize bir hata döndürmektedir. Bu hatanın önüne geçmek için üzerindeki ampul ikonuna tıklayarak Implement interface diyoruz.
+
+![image](https://github.com/user-attachments/assets/97ca3264-03e5-486c-be7a-089a68bf4cf8)
+
+Şimdi tek tek burada Category sınıfı için CRUD işlemlerini gerçekleştiriyoruz. Önce bu CRUD işlemlerinin asıl bağlı olduğu mekanizma olan DataAccess katmanındaki ilgili yapıyı buraya çağırmamız gerekmektedir. Bunun ismi Dependency Injection'dur. Dependency Injection konusu bir sonraki derste anlatılacaktır. Diğer tüm Manager classlarımızı oluşturuyoruz.
+
+Normalde validasyon işlemleri için ayrı bir klasör üzerinden yapılması program açısından daha yararlı olur, ancak burada manuel olarak Manager sınıfının içine yazıyoruz. Burada CustomerManager ile ilgili validasyon işlemlerimizi yazıyoruz.
+
+![image](https://github.com/user-attachments/assets/255ca08a-6ec6-41bb-838a-b41afec35401)
+
+Burada örnek olarak CustomerManager sınıfından ekleme işlemi için bir validasyon işlemi uyguladık. Bu örnek aslında daha da arttırılabilir. Örneğin burada müşterinin adı boş ise veya ismi 3 karakterden az ise gibi bir validasyon işlemini uyguladık. Eğer kurallar sağlanırsa burada ekleme işlemi yapacaktır, aksi takdirde hata verecektir.
+
+![image](https://github.com/user-attachments/assets/c4eb0c31-55ac-4fa0-9173-36cebf2c7117)
+
+PresentationLayer katmanına giderek Form1'de yer alan formumuzun ismini FrmCategory olarak belirliyoruz ve burada tasarımlarımızı yapıyoruz.
+
+Kullanılan Araçlar:
+Label, TextBox, Button, DataGridView, RadioButton
+
+![image](https://github.com/user-attachments/assets/ac3a1d15-69d9-4af2-87c2-2324d160d854)
+
+Formumuzu bu şekilde tasarladık. Şimdi Category işlemleri için Business katmanında yer alan Concrete klasörüne ait CategoryManager sınıfına geliyoruz.
+
+![image](https://github.com/user-attachments/assets/ee84b88b-868d-4e0b-bc10-bfa9333b3de0)
+
+Burada ilk olarak private readonly metodunu kullanarak ICategoryDal'dan _categoryDal isminde bir field tanımlıyoruz. Daha sonrasında bir Constructor oluşturmamız gerekmektedir. Ctrl + . diyerek Generate Constructor diyoruz.
+
+![image](https://github.com/user-attachments/assets/30e118b7-d61c-46b1-9438-b178c2db667e)
+
+Constructor oluşturduk. Artık CRUD işlemlerini yapabiliriz.
+
+![image](https://github.com/user-attachments/assets/84293fcb-cda5-4c0b-a9d3-e6b53d55dd8f)
+
+Burada Business katmanındaki metotlarının içine DataAccess katmanındaki metotlarını çağırmış olduk.
+
+✅ Bu eğitimde Business katmanını ve özelliklerini, Service ve Manager oluşturmayı ve metotları yazmayı, validasyon işlemlerini öğrendim ve uyguladım.
