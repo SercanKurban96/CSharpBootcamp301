@@ -856,3 +856,10 @@ Güncelleme işlemi için burada updateID ile güncellenecek ID'yi buluyoruz. Da
 Güncelleme işlemi bu şekildedir.
 
 ✅ Bu eğitimde Dependency Injection kavramını, BusinessLayer katmanında yer alan CRUD metotlarını PresentationLayer katmanında yer alan CRUD işlemlerinin nasıl yapıldığını öğrendim ve uyguladım.
+
+## 🖥️ C# Eğitim Kampı Ders 21 - Entitye Özgü Metot Yazmak
+### 📆 Tarih: 10 Aralık 2024
+### 📋 C# ile Yapılan Uygulamalar:
+
+Presentation katmanına gelerek yeni bir form oluşturuyoruz ve ismini FrmProduct olarak belirliyoruz.
+
