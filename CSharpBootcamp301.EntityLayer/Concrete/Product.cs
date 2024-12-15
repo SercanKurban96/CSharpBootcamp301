@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,5 +23,9 @@ namespace CSharpBootcamp301.EntityLayer.Concrete
 
         // Order - Product ilişkisinde Product tablosunu da haberdar etmemiz gerekir.
         public List<Order> Orders { get; set; }
+
+
+        //[NotMapped]
+        //public string CategoryName { get; set; }
     }
 }
