@@ -863,3 +863,82 @@ Güncelleme işlemi bu şekildedir.
 
 Presentation katmanına gelerek yeni bir form oluşturuyoruz ve ismini FrmProduct olarak belirliyoruz.
 
+![image](https://github.com/user-attachments/assets/615f0ae9-e86c-4b4a-a55f-c083754d9914)
+
+Ürünler formumuzu bu şekilde tasarladık. Kategori için ise ComboBox aracını kullandık.
+
+![image](https://github.com/user-attachments/assets/cbacddb6-f4c9-4a6e-9074-6a9ff96668a2)
+
+SQL üzerinden Product tablosunda yer alan verilerimizi ekliyoruz.
+
+![image](https://github.com/user-attachments/assets/511bf94b-82eb-413a-83ed-1294ccc0d50c)
+
+Listeleme işlemi için gerekli kodlarımızı yazıyoruz.
+
+![image](https://github.com/user-attachments/assets/67b56087-f5d6-477e-bc4e-990f9f27d605)
+
+Verilerimiz hazır ancak şöyle bir sorun ortaya çıkmaktadır. CategoryID kısmında kategorinin ismi yerine ID formatında gelmekte ve kategori tablosunun ilişkisi olduğu için ayrı bir sütun formatında gelmektedir. Çünkü product entitysi içerisinde kategori ilişkili olduğu için ona ait bir sütun atamış oldu. Bunun önüne geçmek için burada sadece istediğimiz sütunların yer almasını istiyorsak bu noktada devreye entity'e özgü metot girmektedir. Bunun için DataAccess katmanına gelip Abstract klasöründe yer alan IProductDal'a geliyoruz.
+
+![image](https://github.com/user-attachments/assets/fe0e69bd-aa2b-47df-86e2-971009f928f3)
+
+Burada List türünden Product entity üzerinden bir tane GetProductsWithCategory metodunu tanımlıyoruz. Kategorileriyle beraber ürünleri getir anlamına gelen bir metot yazdık. Uygulamada DataAccess katmanında bu metodu çağırarak işlem yapacağız. Burada işlemimiz tamamlandıktan sonra bu kez EntityFramework klasöründe yer alan EfProductDal'a geliyoruz.
+
+![image](https://github.com/user-attachments/assets/d05665ff-3de2-45a0-9814-04051057fdc9)
+
+Buraya geldiğimizde bu kez bize bir hata döndürecektir. Bunun önüne geçmek için ampul ikonuna gelip implement interface diyoruz.
+
+![image](https://github.com/user-attachments/assets/e9a85685-6b24-42c2-beea-a2bb213fd2df)
+
+Metodumuz bu şekilde gelmektedir. Şimdi bunun içini dolduruyoruz. Burada GenericRepository'de olduğu gibi bir tane Context'e ihtiyacımız olacak, ama bu kez Context entity'e özgü olacak.
+
+![image](https://github.com/user-attachments/assets/789fb202-4a90-468f-b9bc-d4913d5cf1de)
+
+Entity'e özgü olan bir tane context tanımlayıp KampContext metoduna atamış olduk. Sonra var tipinden values isminde bir değişken oluşturup Context sınıfına ait olan Products'tan alıp Select metodunu uyguluyoruz ve entity'de yer alan Product üzrinden verilerimizi yazıyoruz. İstediğimiz verileri ekledikten sonra return values diyoruz ancak burada bir tane hata döndürmektedir. Hatanın önüne geçmek için bu kez Entity katmanında yer alan Product'a gidiyoruz.
+
+![image](https://github.com/user-attachments/assets/ac0c48ae-5b13-4bfa-ab39-2f4c9d51f397)
+
+En alta bir tane NotMapped isminde bir attribute ekliyoruz ve string türünde CategoryName diyoruz ancak bu metodu maplemeyecektir. Tekrardan EfProductDal'a gittiğimizde hata ortadan kalkacaktır.
+
+Buradaki işlemlerimizi tamamladıktan sonra Business katmanında yer alan Abstract klasörünün içerisine gelip bu kez IProductService'e geliyoruz.
+
+![image](https://github.com/user-attachments/assets/ac8913f0-864b-45a1-a9cc-54c7e5d11d39)
+
+Burada DataAccess katmanında oluşturduğumuz metodun aynısını buraya yazıyoruz ve yazdığımız metodun ismi karışmaması için başına T koyuyoruz ve en başına public yazmıyoruz.
+
+Buradaki işlem tamamlandıktan sonra Concrete klasöründe yer alan ProductManager sınıfına gidiyoruz ve orada çıkan hatada implement ederek bunun önüne geçiyoruz.
+
+![image](https://github.com/user-attachments/assets/1bda800b-32b9-4990-b479-557711df09d1)
+
+Metodumuz bu şekildedir. Bu metot sadece Product'a özgü bir metottur.
+
+Metotlarımızı ekledikten sonra FrmProduct'a gidip yeni bir tane buton ekliyoruz.
+
+![image](https://github.com/user-attachments/assets/6b30abbe-ec44-47be-b852-dd452d21e247)
+
+Programımızı çalıştırdığımız zaman hata verecektir. Bunun için birkaç değişikliğe gidiyoruz.
+
+İlk olarak Entity katmanında yer alan NotMapped için yazdığımız kodları siliyoruz.
+
+![image](https://github.com/user-attachments/assets/7f6741b0-e3c9-49e9-b1fd-eebf106e310e)
+
+IProductDal kısmında List<Product> yerine List<Object> olarak belirliyoruz.
+
+![image](https://github.com/user-attachments/assets/45e1278f-77a4-44f6-8be2-114bb7ebe7c2)
+
+EfProductDal için kodlar bu şekilde olacaktır.
+
+![image](https://github.com/user-attachments/assets/4ad28e24-1246-4706-bbc1-6bacadaf850a)
+
+![image](https://github.com/user-attachments/assets/3bda95f8-cb8a-435b-a11a-96e64c24200e)
+
+IProductService ve ProductManager için kodlar bu şekilde olacaktır.
+
+![image](https://github.com/user-attachments/assets/908f061e-5b8a-49e9-a5dc-19787f48079f)
+
+Programımız bu şekilde çalışacaktır.
+
+![image](https://github.com/user-attachments/assets/7940cea6-20a4-493e-a21a-60c6ee2901d6)
+
+Programımız için küçük bir revizeye gidiyoruz.
+
+✅ Bu eğitimde entity'e özgü nasıl bir metot yazıldığını öğrendim ve uyguladım.
