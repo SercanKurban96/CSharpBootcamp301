@@ -3,7 +3,6 @@
 
 ## 🖥️ C# Eğitim Kampı Ders 11 - OOP Modülü: C# ile N Katmanlı Mimari Entity Layer
 ### 📆 Tarih: 29 Ekim 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 ## N Katmanlı Mimari nedir?
 
@@ -127,7 +126,6 @@ Projemizin son hali bu şekilde olacaktır.
 
 ## 🖥️ C# Eğitim Kampı Ders 12 - OOP Modülü: Data Access Katmanı ve Context Sınıfı
 ### 📆 Tarih: 6 Kasım 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 Bu kısımda propertyler arasındaki ilişkileri kuruyor olacağız.
 
@@ -233,7 +231,6 @@ connectionString bağlantı adresin olduğu kısmı temsil etmektedir. Yazacağ�
 
 ## 🖥️ C# Eğitim Kampı Ders 13 - OOP Modülü: Migration İşlemleri ve Abstract Interfaceler
 ### 📆 Tarih: 9 Kasım 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 Bu eğitimde "Migration" işlemini yapacağız.
 
@@ -325,7 +322,6 @@ Diğer bütün interfacelerini de aynı şekilde yapıyoruz.
 
 ## 🖥️ C# Eğitim Kampı Ders 14 - Orm Yapısı: Entity Framework DbFirst ve Model Oluşturma
 ### 📆 Tarih: 12 Kasım 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 Bu eğitimde Solution üzerinden yeni bir proje oluşturuyoruz, oluşturacağımız proje Windows Forms App (.NET Framework) olanı seçiyoruz. İsmini CSharpBootcamp301.EFProject olarak belirliyoruz.
 
@@ -443,7 +439,6 @@ Modelimiz artık hazır.
 
 ## 🖥️ C# Eğitim Kampı Ders 15 - Entity Framework Metotları ile Proje Uygulaması
 ### 📆 Tarih: 16 Kasım 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 ![image](https://github.com/user-attachments/assets/9c3144cf-221a-4837-9df5-17ca8d73a441)
 
@@ -517,7 +512,6 @@ ilk olarak int türünde id değişkeni oluşturuyoruz. Daha sonra burada bir ş
 
 ## 🖥️ C# Eğitim Kampı Ders 16 - Entity Framework: Tur Projesi Location İşlemleri
 ### 📆 Tarih: 19 Kasım 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 Bir önceki dersin tekrarını yapacağız. Önceki derste Rehber İşlemleri formu oluşturmuştuk. Bu derste ise Lokasyon İşlemleri'ni gerçekleştireceğiz.
 
@@ -559,7 +553,6 @@ Listeleme, ekleme, silme ve güncelleme komutları bu şekildedir.
 
 ## 🖥️ C# Eğitim Kampı Ders 17 - Entity Framework Metotları ve Linq Sorgular
 ### 📆 Tarih: 23 Kasım 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 Bu derste LINQ sorguları kullanarak istatistik oluşturacağız.
 
@@ -632,7 +625,6 @@ Programı çalıştırdıktan sonra "İstatistikler" formunda yer alan sonuçlar
 
 ## 🖥️ C# Eğitim Kampı Ders 18 - EntityState Komutları, Generic Repository Sınıfı ve Ef Sınıfları
 ### 📆 Tarih: 26 Kasım 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 Bu eğitimde tekrardan N Katmanlı Mimari tasarımına dönerek DataAccessLayer katmanı üzerinden devam ediyoruz.
 
@@ -698,7 +690,6 @@ Burada GenericRepository'den miras aldıktan sonra Admin sınıfı için miras a
 
 ## 🖥️ C# Eğitim Kampı Ders 19 - Business Katmanı ve Logic Kurallar
 ### 📆 Tarih: 4 Aralık 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 # Business Katmanı nedir?
 Business katmanı, bir yazılım uygulamasının katmanlı mimarisi içinde iş mantığını temsil eden bölümdür. Bu katman, uygulamanın veri ve kullanıcı arayüzü arasındaki bağlantıyı kurar ve iş kurallarını işler. İşte business katmanının temel işlevleri:
@@ -779,7 +770,6 @@ Burada Business katmanındaki metotlarının içine DataAccess katmanındaki met
 
 ## 🖥️ C# Eğitim Kampı Ders 20 - Dependency Injection
 ### 📆 Tarih: 5 Aralık 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 # Dependency Injection nedir?
 Dependency Injection (DI), yazılım geliştirme dünyasında sıkça kullanılan bir tasarım desenidir. Temel amacı, bir sınıfın bağımlılıklarını dışarıdan almasını sağlayarak, bağımlılıkların gevşek bir şekilde bağlanmasını (loose coupling) temin etmektir. Bu, yazılımın daha esnek, test edilebilir ve sürdürülebilir olmasına yardımcı olur.
@@ -859,7 +849,6 @@ Güncelleme işlemi bu şekildedir.
 
 ## 🖥️ C# Eğitim Kampı Ders 21 - Entitye Özgü Metot Yazmak
 ### 📆 Tarih: 10 Aralık 2024
-### 📋 C# ile Yapılan Uygulamalar:
 
 Presentation katmanına gelerek yeni bir form oluşturuyoruz ve ismini FrmProduct olarak belirliyoruz.
 
